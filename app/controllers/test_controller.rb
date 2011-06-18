@@ -2,13 +2,15 @@ require 'RMagick'
 
 class TestController < ApplicationController
 
-	def index		
-		draw_coordinates(get_coordinates)
+	def index
+		@coordinates = get_coordinates
+		draw_coordinates(@coordinates)
 	end
 	
 	private
 		
 		def get_coordinates
+			zoom = 3
 			file = File.new("/home/basti/Projekte/rails/geogame/country_borders.txt", "r")
 			coordinates = []
 			while (line = file.gets)
@@ -18,8 +20,8 @@ class TestController < ApplicationController
 				
 				coords = []
 				line.split(' ').each do |xyz|
-					coords << ((xyz.split(',')[0].to_f + 200) * 2).to_i
-					coords << ((400 + (xyz.split(',')[1].to_f + 200) * -1) * 2).to_i
+					coords << ((xyz.split(',')[0].to_f + 200) * zoom).to_i
+					coords << ((300 + (xyz.split(',')[1].to_f + 200) * -1) * zoom).to_i
 				end
 				
 				file.gets
@@ -32,7 +34,7 @@ class TestController < ApplicationController
 		end
 		
 		def draw_coordinates(coordinates)
-			canvas = Magick::Image.new(800, 800,
+			canvas = Magick::Image.new(1200, 800,
 						  Magick::HatchFill.new('white','lightcyan2'))
 			gc = Magick::Draw.new
 

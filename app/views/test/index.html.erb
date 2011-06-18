@@ -1,3 +1,8 @@
 Hallo Welt
-<p><img src="http://localhost:3000/images/world.gif" alt="Tanzmaus"></p>
+<p><img src="http://localhost:3000/images/world.gif" alt="Die Welt", usemap=#countries></p>
 
+<map name=countries>
+	<% @coordinates.each do |coord| %>
+		<area shape="poly" coords=<%= coord[1].join(',') %> title="<%= coord[0] %>">
+	<% end %>
+</map>
