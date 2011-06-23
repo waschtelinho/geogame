@@ -4,7 +4,7 @@ class TestController < ApplicationController
 
 	def index
 		@coordinates = get_coordinates
-		draw_coordinates(@coordinates)
+		#draw_coordinates(@coordinates)
 	end
 	
 	private
