@@ -11,7 +11,7 @@ class TestController < ApplicationController
 		
 		def get_coordinates
 			zoom = 3
-			file = File.new("/home/basti/Projekte/rails/geogame/country_borders.txt", "r")
+			file = File.new("country_borders.txt", "r")
 			coordinates = []
 			while (line = file.gets)
 				name = line.chomp
