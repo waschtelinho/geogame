@@ -1,6 +1,13 @@
-Hallo Welt
-<p><img src="http://localhost:3000/images/world.gif" alt="Die Welt", usemap=#countries></p>
+<p>
+  <a href="javascript:RandomCountry()"> Neues Land, neues Glück! </a>
+</p>
+<p> 
+  Wo liegt: 
+  <input id=country value='' disabled=true>
+  ???
+</p>
 
+<p><img src="http://localhost:3000/images/world.gif" alt="Die Welt", usemap=#countries></p>
 <map name=countries>
 	<% @map_information[:countries].each do |country| %>
 		<area shape="poly" coords=<%= country[1].join(',') %> onclick="Name('<%= country[0] %>')">
@@ -9,8 +16,15 @@ Hallo Welt
 
 <script type="text/javascript">
 <!--
+
 function Name(name) {
-  alert(name)
+  document.getElementById('country').value = name
+}
+
+function RandomCountry() {
+  var country_list = <%= array_or_string_for_javascript(@country_list) %>
+  var random_country = country_list[Math.floor(Math.random() * country_list.length)]
+  document.getElementById('country').value = random_country
 }
 //-->
 </script>
