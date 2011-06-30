@@ -1,19 +1,10 @@
-<p>
-  <a href="javascript:RandomCountry()"> Neues Land, neues Glück! </a>
-  <a href="javascript:SwitchMap()" id=switch_map_link> Karte ohne Grenzen anzeigen</a>
-</p>
-<p> 
-  Wo liegt: 
-  <input id=country value='' disabled=true>
-  ???
-</p>
-
-<p><img src="/images/world.gif" id=map alt="Die Welt" usemap=#countries></p>
-<map name=countries>
-	<% @map_information[:countries].each do |country| %>
-		<area shape="poly" coords=<%= country[1].join(',') %> onclick="CheckSuccess('<%= country[0] %>')">
-	<% end %>
-</map>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>MooTools 1.2 Image Zoom</title>
+<link rel="stylesheet" type="text/css" href="/styles/stylesheet.css" />
+<script language="javascript" type="text/javascript" src="/scripts/mootools-1.2.1-core.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/mootools-1.2-more.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/ImageZoom.js"></script>
 
 <script type="text/javascript">
 <!--
@@ -44,3 +35,39 @@ function SwitchMap() {
 }
 //-->
 </script>
+
+</head>
+
+<body>
+<p>
+  <a href="javascript:RandomCountry()"> Neues Land, neues Glück! </a>
+  <a href="javascript:SwitchMap()" id=switch_map_link> Karte ohne Grenzen anzeigen</a>
+</p>
+<p> 
+  Wo liegt: 
+  <input id=country value='' disabled=true>
+  ???
+</p>
+
+<p><img src="/images/world.gif" id=map alt="Die Welt" usemap=#countries></p>
+<map name=countries>
+	<% @map_information[:countries].each do |country| %>
+		<area shape="poly" coords=<%= country[1].join(',') %> onclick="CheckSuccess('<%= country[0] %>')">
+	<% end %>
+</map>
+
+<div id="container">
+	<h1>Mootools 1.2 image zoom</h1>
+	This image zoom script takes two images: a thumbnail and the large size image. Both thumbnail and large image are preloaded. The zoomed image size can be set according to the thumbnail size ( x2, x4 ... ) and the region zoomed automatically resizes to these proportions.<br />
+	Styles are set up into stylesheet so that no modifications need to be made from JavaScript.<br />
+	You can drag either the highlighted region on thumbnail or the zoomed image itself.
+	<!-- Image zoom start -->
+	<div id="zoomer_big_container"></div>	
+	<div id="zoomer_thumb">
+		<a href="/pictures/big/image.jpg" target="_blank"><img src="/pictures/thumb/image.jpg" /></a>
+	</div>
+	<!-- Image zoom end -->
+	<p id="report"> Move the grey rectangle on the thumbnail to see the zoomed area. You can also drag the "big" image and see the region zoomed getting updated on the thumbnail.</p>
+</div>
+
+</body>
