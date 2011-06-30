@@ -1,5 +1,6 @@
 <p>
   <a href="javascript:RandomCountry()"> Neues Land, neues Glück! </a>
+  <a href="javascript:SwitchMap()" id=switch_map_link> Karte ohne Grenzen anzeigen</a>
 </p>
 <p> 
   Wo liegt: 
@@ -7,24 +8,38 @@
   ???
 </p>
 
-<p><img src="http://localhost:3000/images/world.gif" alt="Die Welt", usemap=#countries></p>
+<p><img src="http://localhost:3000/images/world.gif" id=map alt="Die Welt" usemap=#countries></p>
 <map name=countries>
 	<% @map_information[:countries].each do |country| %>
-		<area shape="poly" coords=<%= country[1].join(',') %> onclick="Name('<%= country[0] %>')">
+		<area shape="poly" coords=<%= country[1].join(',') %> onclick="CheckSuccess('<%= country[0] %>')">
 	<% end %>
 </map>
 
 <script type="text/javascript">
 <!--
 
-function Name(name) {
-  document.getElementById('country').value = name
+function CheckSuccess(name) {
+  if (document.getElementById('country').value == name) {
+    alert('Richtig!');
+  } else {
+    alert('Leider falsch! Das ist ' + name)
+  }
 }
 
 function RandomCountry() {
   var country_list = <%= array_or_string_for_javascript(@country_list) %>
   var random_country = country_list[Math.floor(Math.random() * country_list.length)]
   document.getElementById('country').value = random_country
+}
+
+function SwitchMap() {
+  if (document.getElementById('switch_map_link').innerHTML == 'Karte mit Grenzen anzeigen') {
+    document.getElementById('switch_map_link').innerHTML = "Karte ohne Grenzen anzeigen"
+    document.getElementById('map').src = "http://localhost:3000/images/world.gif"
+  } else {
+    document.getElementById('switch_map_link').innerHTML = "Karte mit Grenzen anzeigen"
+    document.getElementById('map').src = "http://localhost:3000/images/world_no_borders.gif"
+  }
 }
 //-->
 </script>
