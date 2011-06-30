@@ -49,12 +49,14 @@ function SwitchMap() {
   ???
 </p>
 
+<!--
 <p><img src="/images/world.gif" id=map alt="Die Welt" usemap=#countries></p>
 <map name=countries>
 	<% @map_information[:countries].each do |country| %>
 		<area shape="poly" coords=<%= country[1].join(',') %> onclick="CheckSuccess('<%= country[0] %>')">
 	<% end %>
 </map>
+//-->
 
 <div id="container">
 	<h1>Mootools 1.2 image zoom</h1>
@@ -64,7 +66,7 @@ function SwitchMap() {
 	<!-- Image zoom start -->
 	<div id="zoomer_big_container"></div>	
 	<div id="zoomer_thumb">
-		<a href="/pictures/big/image.jpg" target="_blank"><img src="/pictures/thumb/image.jpg" /></a>
+		<a href="/images/world_b.gif" target="_blank"><img src="/images/world_s.gif" /></a>
 	</div>
 	<!-- Image zoom end -->
 	<p id="report"> Move the grey rectangle on the thumbnail to see the zoomed area. You can also drag the "big" image and see the region zoomed getting updated on the thumbnail.</p>
