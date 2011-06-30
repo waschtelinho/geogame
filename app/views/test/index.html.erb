@@ -8,7 +8,7 @@
   ???
 </p>
 
-<p><img src="http://localhost:3000/images/world.gif" id=map alt="Die Welt" usemap=#countries></p>
+<p><img src="/images/world.gif" id=map alt="Die Welt" usemap=#countries></p>
 <map name=countries>
 	<% @map_information[:countries].each do |country| %>
 		<area shape="poly" coords=<%= country[1].join(',') %> onclick="CheckSuccess('<%= country[0] %>')">
@@ -36,10 +36,10 @@ function RandomCountry() {
 function SwitchMap() {
   if (document.getElementById('switch_map_link').innerHTML == 'Karte mit Grenzen anzeigen') {
     document.getElementById('switch_map_link').innerHTML = "Karte ohne Grenzen anzeigen"
-    document.getElementById('map').src = "http://localhost:3000/images/world.gif"
+    document.getElementById('map').src = "/images/world.gif"
   } else {
     document.getElementById('switch_map_link').innerHTML = "Karte mit Grenzen anzeigen"
-    document.getElementById('map').src = "http://localhost:3000/images/world_no_borders.gif"
+    document.getElementById('map').src = "/images/world_no_borders.gif"
   }
 }
 //-->
