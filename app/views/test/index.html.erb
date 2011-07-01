@@ -10,7 +10,7 @@
 <script type="text/javascript">
 <!--
 
-function CheckSuccess(name) {
+/*function CheckSuccess(name) {
   MarkCountry(name);
   if (document.getElementById('country').value == name) {
     alert('Richtig!');
@@ -18,13 +18,121 @@ function CheckSuccess(name) {
   } else {
     alert('Leider falsch! Das ist ' + name);
   }
+}*/
+
+function CheckSuccess(clickX, clickY) {
+	var success = false;
+	var countries = clickedCountries(clickX, clickY);
+	for (var i = 0; i < countries.length; i++) {
+		MarkCountry(countries[i]);
+		if (countries[i] == document.getElementById('country').value) {
+			success = true;
+		}
+	}
+	
+	alert(success);
+}
+
+function clickedCountries(clickX, clickY) {
+	var countries = [];
+	<% @map_information[:countries].each do |c| %>
+		var coords = <%= array_or_string_for_javascript(c[1]) %>
+		var points = [];
+		for (var i = 0; i < coords.length; i+= 2) {
+			points.push({x: coords[i], y: coords[i + 1]});
+		}
+		
+		if (isPointInPoly(points, {x: clickX, y: clickY})) {
+			countries.push("<%= c[0] %>")
+		}
+	<% end %>
+	return countries;
+}
+
+function isPointInPoly2(poly, pt){
+	for(var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i) {
+		((poly[i].y <= pt.y && pt.y < poly[j].y) || (poly[j].y <= pt.y && pt.y < poly[i].y))
+		&& (pt.x < (poly[j].x - poly[i].x) * (pt.y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x)
+		&& (c = !c);
+	}
+	return c;
+}
+
+function isPointInPoly(poly, pt){
+	var intersections = [];
+	for (var i = 0; i < poly.length - 1; i++) {
+		var xs = intersection(poly[i].x, poly[i].y, poly[i+1].x, poly[i+1].y, pt.x, pt.y);
+		if (xs == 100000) {	//point is on border
+			return true;
+		}
+		if (xs != null) {
+			intersections.push(xs);
+		}
+	}
+	var xs = intersection(poly[poly.length-1].x, poly[poly.length-1].y, poly[0].x, poly[0].y, pt.x, pt.y);
+	if (xs == 100000) {	//point is on border
+		return true;
+	}
+	if (xs != null) {
+		intersections.push(xs);
+	}
+	
+	//if (intersections.length != 0) alert (intersections);
+	return ((intersections.length % 2) == 1);
+}
+
+function setAdd(ar, el) {
+	if (el == null) {
+		return ar;
+	}
+	
+	for (var i = 0; i < ar.length; i++) {
+		if (ar[i] == el) {
+			return ar;
+		}
+	}
+	ar.push(el);
+	return ar;
+}
+
+function intersection(x1, y1, x2, y2, xp, yp) {
+	var xs;
+	var a2 = yp / xp;
+	if (x1 == x2) {
+		xs = x1;
+	} else {
+		var a1 = (y1 - y2) / (x1 - x2);
+		var b1 = y1 - a1 * x1;
+		
+		if (a1 == a2) {
+			if (b1 == 0 && xp >= Math.min(x1, x2) && xp <= Math.max(x1, x2)) {
+				return 100000;	//point is on border
+			}
+			return null;
+		}
+		
+		xs = (- b1) / (a1 - a2)
+	}
+	var ys = a2 * xs;
+	//gr.fillCircle(new jsColor("white"), new jsPoint(xs, ys), 3);
+	if (isNaN(xs) || xs < Math.min(x1, x2) || xs > Math.max(x1, x2) || ys < Math.min(y1, y2) || ys > Math.max(y1, y2)  || xp < xs || yp < ys) {
+		return null;
+	}
+	
+	//gr.fillCircle(new jsColor("black"), new jsPoint(xs, ys), 6);
+	
+	if (xp == xs && yp == ys) {
+		return 100000;	//point is on border
+	}
+	
+	//alert(x1 + ',' + y1 + ',' + x2 + ',' + y2 + ',' + xp + ',' + yp + ',' + a1 + ',' + b1 + ',' + a2 + ',' + xs  + ',' + ys);
+	return xs;
 }
 
 function RandomCountry() {
   var country_list = <%= array_or_string_for_javascript(@country_list) %>;
   var random_country = country_list[Math.floor(Math.random() * country_list.length)];
   document.getElementById('country').value = random_country;
-  MarkCountry(random_country);
 }
 
 function SwitchMap() {
@@ -52,10 +160,13 @@ function CountryInfo() {
 
 function MarkCountry(name) {
   //Create jsGraphics object
-  var gr = new jsGraphics(document.getElementById("marker"));
+  gr = new jsGraphics(document.getElementById("marker"));
 
   //Create jsColor object
-  var col = new jsColor("red");
+  col = new jsColor("red");
+  
+  pen = new jsPen(col,1);
+
   
   gr.clear();
   

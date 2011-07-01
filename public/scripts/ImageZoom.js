@@ -51,7 +51,9 @@ var ImageZoom = new Class({
 						'opacity': .7
 					}
 				}).injectInside('zoomer_big_container');
-				d.onclick=function(){alert('a')};
+				d.onclick=function(evt){CheckSuccess(evt.clientX - getX(document.getElementById('marker')), evt.clientY - getY(document.getElementById('marker')))};
+				//d.onclick=function(evt){alert(evt.clientX + ', ' + getX(document.getElementById('marker')) + ', ' + evt.clientY + ', ' + getY(document.getElementById('marker')))};
+								
 				/* move the zoomed image when the zoomer region is dragged on the thumbnail */
 				new Drag('zoomer_region', {
 					modifiers: {x: 'left', y: 'top'},
@@ -113,8 +115,23 @@ var ImageZoom = new Class({
 			}
 		})
 	}
-})
 
+})
+function getX(el) {
+	var x = parseInt(el.offsetLeft);
+	if (!el.offsetParent) {
+		return x;
+	} else {
+		return (x+getX(el.offsetParent));
+	}
+}
+
+function getY (el) {
+	var y = parseInt(el.offsetTop);
+	if (!el.offsetParent) return y;
+	else return (y+getY(el.offsetParent));
+}
+	
 window.addEvent('domready', function(){
 		new ImageZoom();
 });

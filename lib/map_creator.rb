@@ -2,6 +2,7 @@ require 'RMagick'
 
 class MapCreator
 
+  #TODO gleiche Punkte nicht mit aufnehmen
   def self.get_map_information(source, zoom)
     file = File.new(source, "r")
     coordinates = []
