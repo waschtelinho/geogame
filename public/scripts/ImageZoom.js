@@ -47,6 +47,7 @@ var ImageZoom = new Class({
 						'left': '0px',
 						'top': '0px',
 						'position': 'absolute',
+						'background-image': 'url(/images/world_s.gif)',
 						'opacity': .7
 					}
 				}).injectInside('zoomer_big_container');
