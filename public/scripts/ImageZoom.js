@@ -39,7 +39,7 @@ var ImageZoom = new Class({
 						'opacity': .7
 					}
 				}).injectInside('zoomer_thumb');
-				new Element('div', {
+				var d = new Element('div', {
 					id: 'marker',
 					styles: {
 						'width': this.bigImage.width,
@@ -47,10 +47,11 @@ var ImageZoom = new Class({
 						'left': '0px',
 						'top': '0px',
 						'position': 'absolute',
-						'background-image': 'url(/images/world_s.gif)',
+						'background-image': 'url(/images/world.gif)',
 						'opacity': .7
 					}
 				}).injectInside('zoomer_big_container');
+				d.onclick=function(){alert('a')};
 				/* move the zoomed image when the zoomer region is dragged on the thumbnail */
 				new Drag('zoomer_region', {
 					modifiers: {x: 'left', y: 'top'},
