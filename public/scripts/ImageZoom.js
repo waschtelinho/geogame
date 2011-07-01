@@ -7,6 +7,7 @@ var ImageZoom = new Class({
 		this.thumb_image = this.thumb_url.getElement('img');
 		
 		this.thumbnail = new Asset.image( this.thumb_image.get('src'),{
+			id:'thumbnail',
 			onload: function(){
 				$('zoomer_thumb').empty();
 				this.thumbnail.inject('zoomer_thumb');
@@ -38,6 +39,18 @@ var ImageZoom = new Class({
 						'opacity': .7
 					}
 				}).injectInside('zoomer_thumb');
+				new Element('div', {
+					id: 'marker',
+					styles: {
+						'width': this.bigImage.width,
+						'height': this.bigImage.height,
+						'left': '0px',
+						'top': '0px',
+						'position': 'absolute',
+						// 'background-color': '#666',
+						'opacity': .7
+					}
+				}).injectInside('zoomer_big_container');
 				/* move the zoomed image when the zoomer region is dragged on the thumbnail */
 				new Drag('zoomer_region', {
 					modifiers: {x: 'left', y: 'top'},
@@ -56,6 +69,7 @@ var ImageZoom = new Class({
 						var top = (-calcTop) > bigImgTop ? -bigImgTop : calcTop;
 						/* set the position of the zoomed image according to the position of the zoomed area on thumbnail */
 						this.setPosition('zoomer_image',left,top);
+						this.setPosition('marker',left,top);
 					}.bind(this)
 				});	
 				/* drag directly on the zoomed image. Also updates the zoomed region on the thumbnail */				

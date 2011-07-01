@@ -5,34 +5,70 @@
 <script language="javascript" type="text/javascript" src="/scripts/mootools-1.2.1-core.js"></script>
 <script language="javascript" type="text/javascript" src="/scripts/mootools-1.2-more.js"></script>
 <script language="javascript" type="text/javascript" src="/scripts/ImageZoom.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/jsDraw2D.js"></script>
 
 <script type="text/javascript">
 <!--
 
 function CheckSuccess(name) {
+  MarkCountry(name);
   if (document.getElementById('country').value == name) {
     alert('Richtig!');
     RandomCountry();
   } else {
-    alert('Leider falsch! Das ist ' + name)
+    alert('Leider falsch! Das ist ' + name);
   }
 }
 
 function RandomCountry() {
-  var country_list = <%= array_or_string_for_javascript(@country_list) %>
-  var random_country = country_list[Math.floor(Math.random() * country_list.length)]
-  document.getElementById('country').value = random_country
+  var country_list = <%= array_or_string_for_javascript(@country_list) %>;
+  var random_country = country_list[Math.floor(Math.random() * country_list.length)];
+  document.getElementById('country').value = random_country;
+  MarkCountry(random_country);
 }
 
 function SwitchMap() {
   if (document.getElementById('switch_map_link').innerHTML == 'Karte mit Grenzen anzeigen') {
-    document.getElementById('switch_map_link').innerHTML = "Karte ohne Grenzen anzeigen"
-    document.getElementById('map').src = "/images/world.gif"
+    document.getElementById('switch_map_link').innerHTML = "Karte ohne Grenzen anzeigen";
+    document.getElementById('zoomer_image').src = "/images/world_b.gif";
+    document.getElementById('thumbnail').src = "/images/world_s.gif";
   } else {
-    document.getElementById('switch_map_link').innerHTML = "Karte mit Grenzen anzeigen"
-    document.getElementById('map').src = "/images/world_no_borders.gif"
+    document.getElementById('switch_map_link').innerHTML = "Karte mit Grenzen anzeigen";
+    document.getElementById('zoomer_image').src = "/images/world_no_borders_b.gif";
+    document.getElementById('thumbnail').src = "/images/world_no_borders_s.gif";
   }
 }
+
+function CountryInfo() {
+  var countryInfo = new Object();
+  <% @map_information[:countries].each do |c| %>
+    if (countryInfo["<%= c[0] %>"] == null) {
+      countryInfo["<%= c[0] %>"] = [];
+    }
+    countryInfo["<%= c[0] %>"].push(<%= array_or_string_for_javascript(c[1]) %>);
+  <% end %>
+  return countryInfo;
+}
+
+function MarkCountry(name) {
+  //Create jsGraphics object
+  var gr = new jsGraphics(document.getElementById("marker"));
+
+  //Create jsColor object
+  var col = new jsColor("red");
+  
+  gr.clear();
+  
+  var info = CountryInfo()[name];
+  for (var i = 0; i< info.length; i++) {
+    var points = [];
+    for (var j = 0; j< info[i].length; j+= 2) {
+      points.push(new jsPoint(info[i][j], info[i][j + 1]));
+    }
+    gr.fillPolygon(col, points);
+  }
+}
+
 //-->
 </script>
 
@@ -51,7 +87,9 @@ function SwitchMap() {
 
 <div id="container">
 	<!-- Image zoom start -->
-	<div id="zoomer_big_container"></div>	
+	<div id="zoomer_big_container">
+	 <div id="country_mark"></div>
+	</div>	
 	<div id="zoomer_thumb">
 		<a href="/images/world_b.gif"><img src="/images/world_s.gif" /></a>
 	</div>

@@ -11,3 +11,5 @@ a img { border:none; }
 #zoomer_image { display:block; position:absolute; }
 #zoomer_thumb { display:block; position:relative; overflow:hidden; margin:10px auto 0px; }
 #zoomer_region { background:#666666; border:none; position:absolute; top:0px; left:0px; cursor:move; }
+
+#country_mark { background:#666666; border:none; position:absolute; top:0px; left:0px; height:30px; width:30px; }
