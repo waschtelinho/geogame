@@ -49,20 +49,7 @@ function SwitchMap() {
   ???
 </p>
 
-<!--
-<p><img src="/images/world.gif" id=map alt="Die Welt" usemap=#countries></p>
-<map name=countries>
-	<% @map_information[:countries].each do |country| %>
-		<area shape="poly" coords=<%= country[1].join(',') %> onclick="CheckSuccess('<%= country[0] %>')">
-	<% end %>
-</map>
-//-->
-
 <div id="container">
-	<h1>Mootools 1.2 image zoom</h1>
-	This image zoom script takes two images: a thumbnail and the large size image. Both thumbnail and large image are preloaded. The zoomed image size can be set according to the thumbnail size ( x2, x4 ... ) and the region zoomed automatically resizes to these proportions.<br />
-	Styles are set up into stylesheet so that no modifications need to be made from JavaScript.<br />
-	You can drag either the highlighted region on thumbnail or the zoomed image itself.
 	<!-- Image zoom start -->
 	<div id="zoomer_big_container"></div>	
 	<div id="zoomer_thumb">
@@ -71,5 +58,11 @@ function SwitchMap() {
 	<!-- Image zoom end -->
 	<p id="report"> Move the grey rectangle on the thumbnail to see the zoomed area. You can also drag the "big" image and see the region zoomed getting updated on the thumbnail.</p>
 </div>
+
+<map name=countries>
+	<% @map_information[:countries].each do |country| %>
+		<area shape="poly" coords=<%= country[1].join(',') %> onclick="CheckSuccess('<%= country[0] %>')">
+	<% end %>
+</map>
 
 </body>

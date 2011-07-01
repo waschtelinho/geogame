@@ -21,6 +21,7 @@ var ImageZoom = new Class({
 		
 		this.bigImage = new Asset.image( this.thumb_url.get('href'), {
 			id:'zoomer_image',
+			usemap:'#countries',
 			onload: function(){				
 				this.bigImage.inject('zoomer_big_container');
 				/* determine the proportions between the thumbnail and the zoomed image*/
@@ -58,14 +59,14 @@ var ImageZoom = new Class({
 					}.bind(this)
 				});	
 				/* drag directly on the zoomed image. Also updates the zoomed region on the thumbnail */				
-				this.DragBig = new Drag('zoomer_image',{
+				/*this.DragBig = new Drag('zoomer_image',{
 					modifiers: {x:'left',y:'top'},
 					grid:1,
 					onDrag: function(elem){
 						var pos = elem.getPosition('zoomer_big_container');
 						var left = pos.x;
 						var top = pos.y;
-						/* if the zoomed image is dragged outside boundaries, set the correct position */
+						// if the zoomed image is dragged outside boundaries, set the correct position
 						if(	pos.x>0 || pos.y>0 || -pos.x > this.bigImage.width-(thumb_size.x*this.zoomSize) || -pos.y > this.bigImage.height-(thumb_size.y*this.zoomSize)){							
 							if(pos.x > 0) left = 0;
 							if(pos.y > 0) top = 0;
@@ -74,10 +75,10 @@ var ImageZoom = new Class({
 							
 							this.setPosition('zoomer_image',left,top);					
 						};
-						/* moves the zoomed region on thumbnail according to the position of the zoomed image */
+						// moves the zoomed region on thumbnail according to the position of the zoomed image
 						this.setPosition('zoomer_region',-(left/ratioX),-(top/ratioY));						
 					}.bind(this)
-				})				
+				})*/				
 			}.bind(this)
 		});		
 	},
