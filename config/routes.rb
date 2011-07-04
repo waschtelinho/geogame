@@ -1,3 +1,4 @@
 Geogame::Application.routes.draw do
-  get 'test/index'
+  root :to => "test#index"
+  #get 'test/index'
 end
