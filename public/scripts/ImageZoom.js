@@ -13,7 +13,7 @@ var ImageZoom = new Class({
 				this.thumbnail.inject('zoomer_thumb');
 				this.generateZoomer( new Hash({ x:this.thumbnail.width , y:this.thumbnail.height }) );
 			}.bind(this)
-		});		
+		});	
 	},
 	
 	generateZoomer: function( thumb_size ){

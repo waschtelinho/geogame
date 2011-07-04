@@ -10,17 +10,11 @@
 <script type="text/javascript">
 <!--
 
-/*function CheckSuccess(name) {
-  MarkCountry(name);
-  if (document.getElementById('country').value == name) {
-    alert('Richtig!');
-    RandomCountry();
-  } else {
-    alert('Leider falsch! Das ist ' + name);
-  }
-}*/
 
 function CheckSuccess(clickX, clickY) {
+	try {
+		gr.clear();
+	} catch (e) {}
 	var success = false;
 	var countries = clickedCountries(clickX, clickY);
 	for (var i = 0; i < countries.length; i++) {
@@ -30,7 +24,11 @@ function CheckSuccess(clickX, clickY) {
 		}
 	}
 	
-	alert(success);
+	if (success) {
+		alert('Richtig!');
+	} else {
+		alert('Leider daneben! Das ist ' + countries);
+	}
 }
 
 function clickedCountries(clickX, clickY) {
@@ -159,24 +157,25 @@ function CountryInfo() {
 }
 
 function MarkCountry(name) {
-  //Create jsGraphics object
   gr = new jsGraphics(document.getElementById("marker"));
 
   //Create jsColor object
-  col = new jsColor("red");
+  var col = new jsColor("red");
   
-  pen = new jsPen(col,1);
+  //pen = new jsPen(col,1);
 
-  
-  gr.clear();
-  
+    
   var info = CountryInfo()[name];
   for (var i = 0; i< info.length; i++) {
     var points = [];
     for (var j = 0; j< info[i].length; j+= 2) {
       points.push(new jsPoint(info[i][j], info[i][j + 1]));
     }
-    gr.fillPolygon(col, points);
+    try {
+		gr.fillPolygon(col, points);
+	} catch (e) {
+	
+	}
   }
 }
 

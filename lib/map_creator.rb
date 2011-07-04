@@ -2,7 +2,6 @@ require 'RMagick'
 
 class MapCreator
 
-  #TODO gleiche Punkte nicht mit aufnehmen
   def self.get_map_information(source, zoom)
     file = File.new(source, "r")
     coordinates = []
@@ -15,10 +14,21 @@ class MapCreator
 
       coords = []
       line.split(' ').each do |xyz|
-        coords << ((xyz.split(',')[0].to_f + 200) * zoom).to_i
-        x_coords << ((xyz.split(',')[0].to_f + 200) * zoom).to_i
-        coords << ((300 + (xyz.split(',')[1].to_f + 200) * -1) * zoom).to_i
-        y_coords << ((300 + (xyz.split(',')[1].to_f + 200) * -1) * zoom).to_i
+		x = ((xyz.split(',')[0].to_f + 200) * zoom).to_i
+		y = ((300 + (xyz.split(',')[1].to_f + 200) * -1) * zoom).to_i
+		unless x_coords.last == x && y_coords.last == y
+			coords << x
+			x_coords << x
+			coords << y
+			y_coords << y
+		end
+      end
+      
+      if x_coords.first == x_coords.last && y_coords.first == y_coords.last
+		x_coords.delete_at 0
+		y_coords.delete_at 0
+		coords.delete_at 0
+		coords.delete_at 0		
       end
 
       file.gets
