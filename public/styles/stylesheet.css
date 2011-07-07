@@ -7,7 +7,7 @@ p { text-align:center; position:relative; margin:10px auto 0px; }
 a img { border:none; }
 
 /* Image zoom styles */
-#zoomer_big_container { display:block; position:relative; background:url(../images/loading.gif) center center no-repeat #FFFFFF; overflow:hidden; margin:10px auto 0px; border:0px #FFFFFF solid; }
+#zoomer_big_container { display:block; position:relative; background:center center no-repeat #FFFFFF; overflow:hidden; margin:10px auto 0px; border:0px #FFFFFF solid; }
 #zoomer_image { display:block; position:absolute; }
 #zoomer_thumb { display:block; position:relative; overflow:hidden; margin:10px auto 0px; }
 #zoomer_region { background:#666666; border:none; position:absolute; top:0px; left:0px; cursor:move; }
