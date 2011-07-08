@@ -2,6 +2,7 @@ var ImageZoom = new Class({
 					   
 	initialize: function(){
 		this.zoomSize = 2; // x2 the size of the thumbnail
+		this.zoom = 6;
 		
 		this.thumb_url = $('zoomer_thumb').getElement('a');
 		this.thumb_image = this.thumb_url.getElement('img');
@@ -23,8 +24,8 @@ var ImageZoom = new Class({
 		var bigMap = new Element('div', {
 			id: 'bigmap',
 			styles: {
-				'width': thumb_size.x*this.zoomSize,
-				'height': thumb_size.y*this.zoomSize,
+				'width': thumb_size.x*this.zoom,
+				'height': thumb_size.y*this.zoom,
 				'left': '0px',
 				'top': '0px',
 				'position': 'absolute',
@@ -32,13 +33,12 @@ var ImageZoom = new Class({
 			}
 		}).injectInside('zoomer_big_container');
 		
+		
 		bigMap.onclick = function(evt){CheckSuccess(evt.clientX - getX(document.getElementById('bigmap')), evt.clientY - getY(document.getElementById('bigmap')))}
 		
-		var ratioX = (document.getElementById("bigmap").style.width.replace("px", ""))/thumb_size.x;
-		var ratioY = (document.getElementById("bigmap").style.width.replace("px", ""))/thumb_size.y;
 		/* set the size of the zoomed area on thumbnail */
-		var regionWidth = (thumb_size.x/ratioX).toInt()*this.zoomSize;
-		var regionHeight = (thumb_size.y/ratioY).toInt()*this.zoomSize;				
+		var regionWidth = (thumb_size.x/this.zoom).toInt()*this.zoomSize;
+		var regionHeight = (thumb_size.y/this.zoom).toInt()*this.zoomSize;				
 		
 		new Element('div', {
 			id: 'zoomer_region',
@@ -57,8 +57,8 @@ var ImageZoom = new Class({
 				// get the zoomed position on thumbnail
 				var pos = el.getPosition('zoomer_thumb');
 				// calculate where the zoomed image should be positioned
-				var calcLeft = -(pos.x*ratioX);
-				var calcTop = -(pos.y*ratioY);
+				var calcLeft = -(pos.x*this.zoom);
+				var calcTop = -(pos.y*this.zoom);
 				// set a few conditions in case the ratio between the thumbnail and the zoomed image is a float number
 				var bigImgLeft = bigMap.width - (thumb_size.x*this.zoomSize);
 				var bigImgTop = bigMap.height - (thumb_size.y*this.zoomSize);						
