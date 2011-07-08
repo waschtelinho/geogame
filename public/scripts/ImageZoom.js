@@ -20,7 +20,7 @@ var ImageZoom = new Class({
 		this.setDimensions('zoomer_thumb',thumb_size.x,thumb_size.y);
 		this.setDimensions('zoomer_big_container',thumb_size.x*this.zoomSize,thumb_size.y*this.zoomSize);
 		
-		this.bigMap = new Element('div', {
+		var bigMap = new Element('div', {
 			id: 'bigmap',
 			styles: {
 				'width': thumb_size.x*this.zoomSize,
@@ -29,14 +29,13 @@ var ImageZoom = new Class({
 				'top': '0px',
 				'position': 'absolute',
 				'background-image': 'url(/images/world.gif)'
-			},
-			onclick: function(evt) {
-			  CheckSuccess(evt.clientX - getX(document.getElementById('bigmap')), evt.clientY - getY(document.getElementById('bigmap')))
-			}.bind(this)
+			}
 		}).injectInside('zoomer_big_container');
 		
-		var ratioX = this.bigMap.width/thumb_size.x;
-		var ratioY = this.bigMap.height/thumb_size.y;
+		bigMap.onclick = function(evt){CheckSuccess(evt.clientX - getX(document.getElementById('bigmap')), evt.clientY - getY(document.getElementById('bigmap')))}
+		
+		var ratioX = (document.getElementById("bigmap").style.width.replace("px", ""))/thumb_size.x;
+		var ratioY = (document.getElementById("bigmap").style.width.replace("px", ""))/thumb_size.y;
 		/* set the size of the zoomed area on thumbnail */
 		var regionWidth = (thumb_size.x/ratioX).toInt()*this.zoomSize;
 		var regionHeight = (thumb_size.y/ratioY).toInt()*this.zoomSize;				
@@ -55,18 +54,18 @@ var ImageZoom = new Class({
 			grid:1,
 			limit: {x:[0,(thumb_size.x - regionWidth)], y:[0, (thumb_size.y-regionHeight)]},
 			onDrag: function(el){
-				/* get the zoomed position on thumbnail */
+				// get the zoomed position on thumbnail
 				var pos = el.getPosition('zoomer_thumb');
-				/* calculate where the zoomed image should be positioned */
+				// calculate where the zoomed image should be positioned
 				var calcLeft = -(pos.x*ratioX);
 				var calcTop = -(pos.y*ratioY);
-				/* set a few conditions in case the ratio between the thumbnail and the zoomed image is a float number */
-				var bigImgLeft = this.bigMap.width - (thumb_size.x*this.zoomSize);
-				var bigImgTop = this.bigMap.height - (thumb_size.y*this.zoomSize);						
+				// set a few conditions in case the ratio between the thumbnail and the zoomed image is a float number
+				var bigImgLeft = bigMap.width - (thumb_size.x*this.zoomSize);
+				var bigImgTop = bigMap.height - (thumb_size.y*this.zoomSize);						
 				var left = (-calcLeft) > bigImgLeft ? -bigImgLeft : calcLeft;
 				var top = (-calcTop) > bigImgTop ? -bigImgTop : calcTop;
-				/* set the position of the zoomed image according to the position of the zoomed area on thumbnail */
-				this.setPosition('zoomer_image',left,top);
+				// set the position of the zoomed image according to the position of the zoomed area on thumbnail
+				//this.setPosition('zoomer_image',left,top);
 				this.setPosition('bigmap',left,top);
 			}.bind(this)
 		});
@@ -86,25 +85,24 @@ var ImageZoom = new Class({
 				'top':top
 			}
 		})
-	},
-	
-	getX: function(el) {
-  	var x = parseInt(el.offsetLeft);
-  	if (!el.offsetParent) {
-  		return x;
-  	} else {
-  		return (x+getX(el.offsetParent));
-  	}
-  },
-
-  getY: function(el) {
-  	var y = parseInt(el.offsetTop);
-  	if (!el.offsetParent) return y;
-  	else return (y+getY(el.offsetParent));
-  }
+	}
 
 })
 
+function getX(el) {
+	var x = parseInt(el.offsetLeft);
+	if (!el.offsetParent) {
+		return x;
+	} else {
+		return (x+getX(el.offsetParent));
+	}
+}
+
+function getY (el) {
+	var y = parseInt(el.offsetTop);
+	if (!el.offsetParent) return y;
+	else return (y+getY(el.offsetParent));
+}
 	
 window.addEvent('domready', function(){
 		new ImageZoom();
