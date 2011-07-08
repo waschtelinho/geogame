@@ -32,8 +32,6 @@ var ImageZoom = new Class({
 				'background-image': 'url(/images/world.gif)'
 			}
 		}).injectInside('zoomer_big_container');
-		
-		
 		bigMap.onclick = function(evt){CheckSuccess(evt.clientX - getX(document.getElementById('bigmap')), evt.clientY - getY(document.getElementById('bigmap')))}
 		
 		/* set the size of the zoomed area on thumbnail */
@@ -65,7 +63,6 @@ var ImageZoom = new Class({
 				var left = (-calcLeft) > bigImgLeft ? -bigImgLeft : calcLeft;
 				var top = (-calcTop) > bigImgTop ? -bigImgTop : calcTop;
 				// set the position of the zoomed image according to the position of the zoomed area on thumbnail
-				//this.setPosition('zoomer_image',left,top);
 				this.setPosition('bigmap',left,top);
 			}.bind(this)
 		});
@@ -94,14 +91,14 @@ function getX(el) {
 	if (!el.offsetParent) {
 		return x;
 	} else {
-		return (x+getX(el.offsetParent));
+		return (x + getX(el.offsetParent));
 	}
 }
 
 function getY (el) {
 	var y = parseInt(el.offsetTop);
 	if (!el.offsetParent) return y;
-	else return (y+getY(el.offsetParent));
+	else return (y + getY(el.offsetParent));
 }
 	
 window.addEvent('domready', function(){
