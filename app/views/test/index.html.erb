@@ -79,20 +79,6 @@ function isPointInPoly(poly, pt){
 	return ((intersections.length % 2) == 1);
 }
 
-function setAdd(ar, el) {
-	if (el == null) {
-		return ar;
-	}
-	
-	for (var i = 0; i < ar.length; i++) {
-		if (ar[i] == el) {
-			return ar;
-		}
-	}
-	ar.push(el);
-	return ar;
-}
-
 function intersection(x1, y1, x2, y2, xp, yp) {
 	var xs;
 	var a2 = yp / xp;
@@ -156,6 +142,10 @@ function CountryInfo() {
   return countryInfo;
 }
 
+function ShowCountry() {
+  MarkCountry(document.getElementById('country').value)
+}
+
 function MarkCountry(name) {
   gr = new jsGraphics(document.getElementById("marker"));
 
@@ -188,6 +178,7 @@ function MarkCountry(name) {
 <p>
   <a href="javascript:RandomCountry()"> Neues Land, neues Glück! </a>
   <a href="javascript:SwitchMap()" id=switch_map_link> Karte ohne Grenzen anzeigen</a>
+  <a href="javascript:ShowCountry()">Land zeigen</a>
 </p>
 <p> 
   Wo liegt: 
