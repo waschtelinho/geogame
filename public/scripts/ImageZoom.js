@@ -113,5 +113,11 @@ window.addEvent('domready', function(){
 });
 
 function ZoomIn(){
-  this.iz.setZoom(9);
+  var newZoom = this.iz.zoom < 10 ? this.iz.zoom + 1 : this.iz.zoom
+  this.iz.setZoom(newZoom);
 }
+
+function ZoomOut(){
+  var newZoom = this.iz.zoom > 2 ? this.iz.zoom - 1 : this.iz.zoom
+  this.iz.setZoom(newZoom);
+} 
