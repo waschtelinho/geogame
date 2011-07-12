@@ -1,22 +1,11 @@
 namespace :map do
-  
-  zoom_factor = 6
-  
+
   task :world => :environment do
-    map_information = MapCreator.get_map_information('country_borders.txt', zoom_factor)
-    MapCreator.draw_map(map_information, '#00ff00', '#001aff', 'public/images/world_b.gif')
-    MapCreator.draw_map(map_information, '#00ff00', '#00ff00', 'public/images/world_no_borders_b.gif')
-  end
-  
-  task :world => :environment do
-    map_information = MapCreator.get_map_information('country_borders.txt', zoom_factor)
-    country_list = (map_information[:countries].collect {|country| country[0]}).uniq!
-    country_list.each do |country|
-      
+    [1,2,3,4,5,6,7,8,9,10].each do |zoom_factor|
+      map_information = MapCreator.get_map_information('country_borders.txt', zoom_factor)
+      MapCreator.draw_map(map_information, '#00ff00', '#001aff', "public/images/worldmaps/world_#{zoom_factor}.gif")
+      MapCreator.draw_map(map_information, '#00ff00', '#00ff00', "public/images/worldmaps/world_no_borders_#{zoom_factor}.gif")
     end
-    
-    MapCreator.draw_map(map_information, '#00ff00', '#001aff', 'public/images/world_b.gif')
-    MapCreator.draw_map(map_information, '#00ff00', '#00ff00', 'public/images/world_no_borders_b.gif')
   end
-  
+
 end
