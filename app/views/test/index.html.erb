@@ -49,15 +49,6 @@ function clickedCountries(clickX, clickY) {
 	return countries;
 }
 
-function isPointInPoly2(poly, pt){
-	for(var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i) {
-		((poly[i].y <= pt.y && pt.y < poly[j].y) || (poly[j].y <= pt.y && pt.y < poly[i].y))
-		&& (pt.x < (poly[j].x - poly[i].x) * (pt.y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x)
-		&& (c = !c);
-	}
-	return c;
-}
-
 function isPointInPoly(poly, pt){
 	var intersections = [];
 	for (var i = 0; i < poly.length - 1; i++) {

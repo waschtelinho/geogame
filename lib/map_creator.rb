@@ -2,6 +2,10 @@ require 'RMagick'
 
 class MapCreator
 
+  def self.zooms
+    [1,2,3,4,5,6,7,8,9,10]
+  end
+
   def self.get_map_information(source, zoom)
     file = File.new(source, "r")
     coordinates = []
