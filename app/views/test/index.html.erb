@@ -26,6 +26,8 @@ function CheckSuccess(clickX, clickY) {
 	
 	if (success) {
 		alert('Richtig!');
+		gr.clear();
+		RandomCountry();
 	} else {
 		alert('Leider daneben! Das ist ' + countries);
 	}
@@ -143,6 +145,7 @@ function CountryInfo() {
 }
 
 function ShowCountry() {
+  gr.clear()
   MarkCountry(document.getElementById('country').value)
 }
 
