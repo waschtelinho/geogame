@@ -2,10 +2,8 @@ var ImageZoom = new Class({
 					   
 	initialize: function(zoom){
 		this.zoomSize = 2; // x2 the size of the thumbnail
-		this.thumb_url = $('zoomer_thumb').getElement('a');
-		this.thumb_image = this.thumb_url.getElement('img');
 		
-		this.thumbnail = new Asset.image( this.thumb_image.get('src'),{
+		this.thumbnail = new Asset.image( '/images/worldmaps/world_1.gif',{
 			id:'thumbnail',
 			onload: function(){
 				$('zoomer_thumb').empty();
