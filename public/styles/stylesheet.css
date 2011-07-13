@@ -8,7 +8,7 @@ a img { border:none; }
 
 /* Image zoom styles */
 #zoomer_big_container { display:block; position:relative; overflow:hidden; margin:10px auto 0px; border:0px #FFFFFF solid; }
-/*#bigmap { display:block; position:absolute; }*/
+
 #zoomer_thumb { display:block; position:relative; overflow:hidden; margin:10px auto 0px; }
 #zoomer_region { background:#666666; border:none; position:absolute; top:0px; left:0px; cursor:move; }
 
