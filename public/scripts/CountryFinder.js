@@ -22,7 +22,7 @@ function CheckSuccess(clickX, clickY) {
 
 function clickedCountries(clickX, clickY) {
 	var countries = [];
-	infos = this.countryInfo[this.zoom]
+	infos = countryInfo[zoom]
 	for (var name in infos) {
 	  for (var i = 0; i < infos[name].length; i++) {
       var points = [];
@@ -39,20 +39,14 @@ function clickedCountries(clickX, clickY) {
 }
 
 function RandomCountry() {
-  var random_country = this.countryList[Math.floor(Math.random() * this.countryList.length)];
+  var random_country = countryList[Math.floor(Math.random() * countryList.length)];
   document.getElementById('country').value = random_country;
 }
 
 function SwitchMap() {
-  if (document.getElementById('switch_map_link').innerHTML == 'Karte mit Grenzen anzeigen') {
-    document.getElementById('switch_map_link').innerHTML = "Karte ohne Grenzen anzeigen";
-    //document.getElementById('zoomer_image').src = "/images/world_b.gif";
-    document.getElementById('thumbnail').src = "/images/world_s.gif";
-  } else {
-    document.getElementById('switch_map_link').innerHTML = "Karte mit Grenzen anzeigen";
-    //document.getElementById('zoomer_image').src = "/images/world_no_borders_b.gif";
-    document.getElementById('thumbnail').src = "/images/world_no_borders_s.gif";
-  }
+  withBorders = !withBorders
+  document.getElementById('thumbnail').src = getImageUrl(1, withBorders);
+  document.getElementById('bigmap').setStyles({'background-image': 'url(' + getImageUrl(zoom, withBorders) + ')'});
 }
 
 function ShowCountry() {
@@ -65,7 +59,7 @@ function MarkCountry(name) {
 
   //Create jsColor object
   var col = new jsColor("red");
-  var info = this.countryInfo[this.zoom][name];
+  var info = countryInfo[zoom][name];
   for (var i = 0; i< info.length; i++) {
     var points = [];
     for (var j = 0; j< info[i].length; j+= 2) {
@@ -93,11 +87,19 @@ function getY(el) {
 }
 
 function ZoomIn(){
-  if (this.zoom < 10) this.zoom += 1;
-  this.imagezoom.setZoom(this.zoom);
+  if (zoom < 10) zoom += 1;
+  imagezoom.setZoom(zoom);
 }
 
 function ZoomOut(){
-  if (this.zoom > 2) this.zoom -= 1;
-  this.imagezoom.setZoom(this.zoom);
+  if (zoom > 2) zoom -= 1;
+  imagezoom.setZoom(zoom);
+}
+
+function getImageUrl(zoom, with_borders) {
+  if (with_borders) {
+    return '/images/worldmaps/world_' + zoom + '.gif'
+  } else {
+    return '/images/worldmaps/world_no_borders_' + zoom + '.gif'
+  }
 }

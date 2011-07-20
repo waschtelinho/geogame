@@ -12,6 +12,13 @@
 <script type="text/javascript">
 <!--
 
+var zoom = 6
+var withBorders = true
+var randomCountry = null
+var clickedCountry = null
+var countryInfo = InitCountryInfo()
+var countryList = null;
+
 function InitCountryInfo() {
   var countryInfo = new Object();
   <% @map_information.each do |zoom, infos| %>
@@ -29,11 +36,9 @@ function InitCountryInfo() {
 }
 
 window.addEvent('domready', function() {
-  this.countryInfo = InitCountryInfo()
-  this.countryList = <%= array_or_string_for_javascript(@country_list) %>;
-  this.zoom = 6
-	this.imagezoom = new ImageZoom(this.zoom);
+  imagezoom = new ImageZoom(this.zoom);
 });
+
 //-->
 </script>
 
@@ -42,7 +47,7 @@ window.addEvent('domready', function() {
 <body>
 <p>
   <a href="javascript:RandomCountry()"> Neues Land, neues Glück! </a>
-  <a href="javascript:SwitchMap()" id=switch_map_link> Karte ohne Grenzen anzeigen</a>
+  <a href="javascript:SwitchMap()" id=switch_map_link> Karte wechseln</a>
   <a href="javascript:ShowCountry()">Land zeigen</a>
   <a href="javascript:ZoomIn()" id=switch_map_link> Zoom in</a>
   <a href="javascript:ZoomOut()" id=switch_map_link> Zoom out</a>

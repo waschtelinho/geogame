@@ -3,7 +3,7 @@ var ImageZoom = new Class({
 	initialize: function(zoom){
 		this.zoomSize = 2; // x2 the size of the thumbnail
 		
-		this.thumbnail = new Asset.image( '/images/worldmaps/world_1.gif',{
+		this.thumbnail = new Asset.image(getImageUrl(1, withBorders), {
 			id:'thumbnail',
 			onload: function(){
 				$('zoomer_thumb').empty();
@@ -58,7 +58,7 @@ var ImageZoom = new Class({
 	  this.bigMap.setStyles({
   	  'width': this.thumbnail.width * zoom,
   		'height': this.thumbnail.height * zoom,
-  		'background-image': 'url(/images/worldmaps/world_' + zoom + '.gif)'
+  		'background-image': 'url(' + getImageUrl(zoom, withBorders) + ')'
 	  });
 	  
 	  var regionWidth = (this.thumbnail.width / zoom).toInt() * this.zoomSize;
@@ -88,5 +88,4 @@ var ImageZoom = new Class({
 			}
 		})
 	}
-
 })
