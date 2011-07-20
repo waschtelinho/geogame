@@ -1,19 +1,16 @@
 function CheckSuccess(clickX, clickY) {
-	try {
-		gr.clear();
-	} catch (e) {}
 	var success = false;
 	var countries = clickedCountries(clickX, clickY);
 	for (var i = 0; i < countries.length; i++) {
 		MarkCountry(countries[i]);
-		if (countries[i] == document.getElementById('country').value) {
+		if (countries[i] == RANDOM_COUNTRY) {
 			success = true;
 		}
 	}
 	
 	if (success) {
 		alert('Richtig!');
-		gr.clear();
+    ClearMark();
 		RandomCountry();
 	} else {
 		alert('Leider daneben! Das ist ' + countries);
@@ -22,7 +19,7 @@ function CheckSuccess(clickX, clickY) {
 
 function clickedCountries(clickX, clickY) {
 	var countries = [];
-	infos = countryInfo[zoom]
+	infos = COUNTRY_INFO[ZOOM]
 	for (var name in infos) {
 	  for (var i = 0; i < infos[name].length; i++) {
       var points = [];
@@ -39,36 +36,45 @@ function clickedCountries(clickX, clickY) {
 }
 
 function RandomCountry() {
-  var random_country = countryList[Math.floor(Math.random() * countryList.length)];
-  document.getElementById('country').value = random_country;
+  ClearMark();
+  RANDOM_COUNTRY = COUNTRY_LIST[Math.floor(Math.random() * COUNTRY_LIST.length)];
+  document.getElementById('country').value = RANDOM_COUNTRY;
 }
 
 function SwitchMap() {
-  withBorders = !withBorders
-  document.getElementById('thumbnail').src = getImageUrl(1, withBorders);
-  document.getElementById('bigmap').setStyles({'background-image': 'url(' + getImageUrl(zoom, withBorders) + ')'});
+  WITH_BORDERS = !WITH_BORDERS
+  document.getElementById('thumbnail').src = getImageUrl(1, WITH_BORDERS);
+  document.getElementById('bigmap').setStyles({'background-image': 'url(' + getImageUrl(ZOOM, WITH_BORDERS) + ')'});
 }
 
 function ShowCountry() {
-  gr.clear()
-  MarkCountry(document.getElementById('country').value)
+  MarkCountry(RANDOM_COUNTRY)
 }
 
 function MarkCountry(name) {
-  gr = new jsGraphics(document.getElementById("bigmap"));
+  GRAPHICS.clear();
+  if (name == null) {
+    return;
+  }
 
+  MARKED_COUNTRY = name
   //Create jsColor object
   var col = new jsColor("red");
-  var info = countryInfo[zoom][name];
+  var info = COUNTRY_INFO[ZOOM][name];
   for (var i = 0; i< info.length; i++) {
     var points = [];
     for (var j = 0; j< info[i].length; j+= 2) {
       points.push(new jsPoint(info[i][j], info[i][j + 1]));
     }
     try {
-  		gr.fillPolygon(col, points);
+  		GRAPHICS.fillPolygon(col, points);
   	} catch (e) {}
   }
+}
+
+function ClearMark() {
+  MARKED_COUNTRY = null;
+  GRAPHICS.clear();
 }
 
 function getX(el) {
@@ -87,13 +93,15 @@ function getY(el) {
 }
 
 function ZoomIn(){
-  if (zoom < 10) zoom += 1;
-  imagezoom.setZoom(zoom);
+  if (ZOOM < 10) ZOOM += 1;
+  IMAGE_ZOOM.setZoom(ZOOM);
+  MarkCountry(MARKED_COUNTRY);
 }
 
 function ZoomOut(){
-  if (zoom > 2) zoom -= 1;
-  imagezoom.setZoom(zoom);
+  if (ZOOM > 2) ZOOM -= 1;
+  IMAGE_ZOOM.setZoom(ZOOM);
+  MarkCountry(MARKED_COUNTRY);
 }
 
 function getImageUrl(zoom, with_borders) {

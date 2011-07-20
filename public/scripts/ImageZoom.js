@@ -3,20 +3,22 @@ var ImageZoom = new Class({
 	initialize: function(zoom){
 		this.zoomSize = 2; // x2 the size of the thumbnail
 		
-		this.thumbnail = new Asset.image(getImageUrl(1, withBorders), {
+		this.thumbnail = new Asset.image(getImageUrl(1, WITH_BORDERS), {
 			id:'thumbnail',
 			onload: function(){
 				$('zoomer_thumb').empty();
 				this.thumbnail.inject('zoomer_thumb');
-				this.generateZoomer( new Hash({ x:this.thumbnail.width , y:this.thumbnail.height }) );
+				this.thumbSize = new Hash({ x:this.thumbnail.width , y:this.thumbnail.height });
+				this.generateZoomer();
 				this.setZoom(zoom);
+				GRAPHICS = new jsGraphics(document.getElementById("bigmap"));
 			}.bind(this)
 		});
 	},
 	
-	generateZoomer: function( thumb_size ){
-		this.setDimensions('zoomer_thumb', thumb_size.x, thumb_size.y);
-		this.setDimensions('zoomer_big_container', thumb_size.x * this.zoomSize, thumb_size.y * this.zoomSize);
+	generateZoomer: function(){
+		this.setDimensions('zoomer_thumb', this.thumbSize.x, this.thumbSize.y);
+		this.setDimensions('zoomer_big_container', this.thumbSize.x * this.zoomSize, this.thumbSize.y * this.zoomSize);
 		
 		this.bigMap = new Element('div', {
 			id: 'bigmap',
@@ -37,28 +39,32 @@ var ImageZoom = new Class({
 			modifiers: {x: 'left', y: 'top'},
 			grid:1,
 			onDrag: function(el){
-				// get the zoomed position on thumbnail
-				var pos = el.getPosition('zoomer_thumb');
-				// calculate where the zoomed image should be positioned
-				var calcLeft = -(pos.x * this.zoom);
-				var calcTop = -(pos.y * this.zoom);
-				// set a few conditions in case the ratio between the thumbnail and the zoomed image is a float number
-				var bigImgLeft = this.bigMap.width - (thumb_size.x * this.zoomSize);
-				var bigImgTop = this.bigMap.height - (thumb_size.y * this.zoomSize);						
-				var left = (-calcLeft) > bigImgLeft ? -bigImgLeft : calcLeft;
-				var top = (-calcTop) > bigImgTop ? -bigImgTop : calcTop;
-				// set the position of the zoomed image according to the position of the zoomed area on thumbnail
-				this.setPosition('bigmap', left, top);
+				this.setDragPos(el);
 			}.bind(this)
 		});
 	},
 	
+	setDragPos: function(el) {
+	  // get the zoomed position on thumbnail
+		var pos = el.getPosition('zoomer_thumb');
+		// calculate where the zoomed image should be positioned
+		var calcLeft = -(pos.x * ZOOM);
+		var calcTop = -(pos.y * ZOOM);
+		// set a few conditions in case the ratio between the thumbnail and the zoomed image is a float number
+		var bigImgLeft = this.bigMap.width - (this.thumbSize.x * this.zoomSize);
+		var bigImgTop = this.bigMap.height - (this.thumbSize.y * this.zoomSize);						
+		var left = (-calcLeft) > bigImgLeft ? -bigImgLeft : calcLeft;
+		var top = (-calcTop) > bigImgTop ? -bigImgTop : calcTop;
+		// set the position of the zoomed image according to the position of the zoomed area on thumbnail
+		this.setPosition('bigmap', left, top);
+	},
+	
 	setZoom: function(zoom) {
-	  this.zoom = zoom;
+	  ZOOM = zoom;
 	  this.bigMap.setStyles({
   	  'width': this.thumbnail.width * zoom,
   		'height': this.thumbnail.height * zoom,
-  		'background-image': 'url(' + getImageUrl(zoom, withBorders) + ')'
+  		'background-image': 'url(' + getImageUrl(ZOOM, WITH_BORDERS) + ')'
 	  });
 	  
 	  var regionWidth = (this.thumbnail.width / zoom).toInt() * this.zoomSize;
@@ -71,6 +77,8 @@ var ImageZoom = new Class({
 		this.drager.setOptions({
 		  limit : {x : [0, (this.thumbnail.width - regionWidth)], y : [0, (this.thumbnail.height - regionHeight)]}
 		});
+		
+		this.setDragPos(this.zoomerRegion);
 	},
 	
 	setDimensions: function(element,width,height){
