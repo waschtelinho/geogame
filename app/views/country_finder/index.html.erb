@@ -35,17 +35,19 @@ function CheckSuccess(clickX, clickY) {
 
 function clickedCountries(clickX, clickY) {
 	var countries = [];
-	<% @map_information[:countries].each do |c| %>
-		var coords = <%= array_or_string_for_javascript(c[1]) %>
-		var points = [];
-		for (var i = 0; i < coords.length; i+= 2) {
-			points.push({x: coords[i], y: coords[i + 1]});
-		}
-		
-		if (isPointInPoly(points, {x: clickX, y: clickY})) {
-			countries.push("<%= c[0] %>")
-		}
-	<% end %>
+	infos = CountryInfo()[this.iz.zoom]
+	for (var name in infos) {
+	  for (var i = 0; i < infos[name].length; i++) {
+      var points = [];
+      for (var j = 0; j < infos[name][i].length; j+= 2) {
+        points.push({x: infos[name][i][j], y: infos[name][i][j + 1]});
+      }
+      
+      if (isPointInPoly(points, {x: clickX, y: clickY})) {
+  			countries.push(name)
+  		}
+    }
+  }
 	return countries;
 }
 
@@ -125,14 +127,21 @@ function SwitchMap() {
 }
 
 function CountryInfo() {
-  var countryInfo = new Object();
-  <% @map_information[:countries].each do |c| %>
-    if (countryInfo["<%= c[0] %>"] == null) {
-      countryInfo["<%= c[0] %>"] = [];
-    }
-    countryInfo["<%= c[0] %>"].push(<%= array_or_string_for_javascript(c[1]) %>);
-  <% end %>
-  return countryInfo;
+  if (this.countryInfo == null) {
+    this.countryInfo = new Object();
+    <% @map_information.each do |zoom, infos| %>
+      if (countryInfo[<%= zoom %>] == null) {
+        countryInfo[<%= zoom %>] = new Object();
+      }
+      <% @map_information[zoom][:countries].each do |c| %>
+        if (countryInfo[<%= zoom %>]["<%= c[0] %>"] == null) {
+          countryInfo[<%= zoom %>]["<%= c[0] %>"] = [];
+        }
+        countryInfo[<%= zoom %>]["<%= c[0] %>"].push(<%= array_or_string_for_javascript(c[1]) %>);
+      <% end %>
+    <% end %>
+  }
+  return this.countryInfo;
 }
 
 function ShowCountry() {
@@ -149,17 +158,15 @@ function MarkCountry(name) {
   //pen = new jsPen(col,1);
 
     
-  var info = CountryInfo()[name];
+  var info = CountryInfo()[this.iz.zoom][name];
   for (var i = 0; i< info.length; i++) {
     var points = [];
     for (var j = 0; j< info[i].length; j+= 2) {
       points.push(new jsPoint(info[i][j], info[i][j + 1]));
     }
     try {
-		gr.fillPolygon(col, points);
-	} catch (e) {
-	
-	}
+  		gr.fillPolygon(col, points);
+  	} catch (e) {}
   }
 }
 

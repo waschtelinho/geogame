@@ -1,4 +1,4 @@
 Geogame::Application.routes.draw do
-  root :to => "test#index"
+  root :to => "country_finder#index"
   #get 'test/index'
 end
