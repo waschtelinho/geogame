@@ -90,32 +90,3 @@ var ImageZoom = new Class({
 	}
 
 })
-
-function getX(el) {
-	var x = parseInt(el.offsetLeft);
-	if (!el.offsetParent) {
-		return x;
-	} else {
-		return (x + getX(el.offsetParent));
-	}
-}
-
-function getY(el) {
-	var y = parseInt(el.offsetTop);
-	if (!el.offsetParent) return y;
-	else return (y + getY(el.offsetParent));
-}
-	
-window.addEvent('domready', function(){
-		this.iz = new ImageZoom(6);
-});
-
-function ZoomIn(){
-  var newZoom = this.iz.zoom < 10 ? this.iz.zoom + 1 : this.iz.zoom
-  this.iz.setZoom(newZoom);
-}
-
-function ZoomOut(){
-  var newZoom = this.iz.zoom > 2 ? this.iz.zoom - 1 : this.iz.zoom
-  this.iz.setZoom(newZoom);
-} 

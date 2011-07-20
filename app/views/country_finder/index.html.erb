@@ -6,170 +6,34 @@
 <script language="javascript" type="text/javascript" src="/scripts/mootools-1.2-more.js"></script>
 <script language="javascript" type="text/javascript" src="/scripts/ImageZoom.js"></script>
 <script language="javascript" type="text/javascript" src="/scripts/jsDraw2D.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/MathStuff.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/CountryFinder.js"></script>
 
 <script type="text/javascript">
 <!--
 
-
-function CheckSuccess(clickX, clickY) {
-	try {
-		gr.clear();
-	} catch (e) {}
-	var success = false;
-	var countries = clickedCountries(clickX, clickY);
-	for (var i = 0; i < countries.length; i++) {
-		MarkCountry(countries[i]);
-		if (countries[i] == document.getElementById('country').value) {
-			success = true;
-		}
-	}
-	
-	if (success) {
-		alert('Richtig!');
-		gr.clear();
-		RandomCountry();
-	} else {
-		alert('Leider daneben! Das ist ' + countries);
-	}
-}
-
-function clickedCountries(clickX, clickY) {
-	var countries = [];
-	infos = CountryInfo()[this.iz.zoom]
-	for (var name in infos) {
-	  for (var i = 0; i < infos[name].length; i++) {
-      var points = [];
-      for (var j = 0; j < infos[name][i].length; j+= 2) {
-        points.push({x: infos[name][i][j], y: infos[name][i][j + 1]});
-      }
-      
-      if (isPointInPoly(points, {x: clickX, y: clickY})) {
-  			countries.push(name)
-  		}
+function InitCountryInfo() {
+  var countryInfo = new Object();
+  <% @map_information.each do |zoom, infos| %>
+    if (countryInfo[<%= zoom %>] == null) {
+      countryInfo[<%= zoom %>] = new Object();
     }
-  }
-	return countries;
-}
-
-function isPointInPoly(poly, pt){
-	var intersections = [];
-	for (var i = 0; i < poly.length - 1; i++) {
-		var xs = intersection(poly[i].x, poly[i].y, poly[i+1].x, poly[i+1].y, pt.x, pt.y);
-		if (xs == 100000) {	//point is on border
-			return true;
-		}
-		if (xs != null) {
-			intersections.push(xs);
-		}
-	}
-	var xs = intersection(poly[poly.length-1].x, poly[poly.length-1].y, poly[0].x, poly[0].y, pt.x, pt.y);
-	if (xs == 100000) {	//point is on border
-		return true;
-	}
-	if (xs != null) {
-		intersections.push(xs);
-	}
-	
-	//if (intersections.length != 0) alert (intersections);
-	return ((intersections.length % 2) == 1);
-}
-
-function intersection(x1, y1, x2, y2, xp, yp) {
-	var xs;
-	var a2 = yp / xp;
-	if (x1 == x2) {
-		xs = x1;
-	} else {
-		var a1 = (y1 - y2) / (x1 - x2);
-		var b1 = y1 - a1 * x1;
-		
-		if (a1 == a2) {
-			if (b1 == 0 && xp >= Math.min(x1, x2) && xp <= Math.max(x1, x2)) {
-				return 100000;	//point is on border
-			}
-			return null;
-		}
-		
-		xs = (- b1) / (a1 - a2)
-	}
-	var ys = a2 * xs;
-	//gr.fillCircle(new jsColor("white"), new jsPoint(xs, ys), 3);
-	if (isNaN(xs) || xs < Math.min(x1, x2) || xs > Math.max(x1, x2) || ys < Math.min(y1, y2) || ys > Math.max(y1, y2)  || xp < xs || yp < ys) {
-		return null;
-	}
-	
-	//gr.fillCircle(new jsColor("black"), new jsPoint(xs, ys), 6);
-	
-	if (xp == xs && yp == ys) {
-		return 100000;	//point is on border
-	}
-	
-	//alert(x1 + ',' + y1 + ',' + x2 + ',' + y2 + ',' + xp + ',' + yp + ',' + a1 + ',' + b1 + ',' + a2 + ',' + xs  + ',' + ys);
-	return xs;
-}
-
-function RandomCountry() {
-  var country_list = <%= array_or_string_for_javascript(@country_list) %>;
-  var random_country = country_list[Math.floor(Math.random() * country_list.length)];
-  document.getElementById('country').value = random_country;
-}
-
-function SwitchMap() {
-  if (document.getElementById('switch_map_link').innerHTML == 'Karte mit Grenzen anzeigen') {
-    document.getElementById('switch_map_link').innerHTML = "Karte ohne Grenzen anzeigen";
-    //document.getElementById('zoomer_image').src = "/images/world_b.gif";
-    document.getElementById('thumbnail').src = "/images/world_s.gif";
-  } else {
-    document.getElementById('switch_map_link').innerHTML = "Karte mit Grenzen anzeigen";
-    //document.getElementById('zoomer_image').src = "/images/world_no_borders_b.gif";
-    document.getElementById('thumbnail').src = "/images/world_no_borders_s.gif";
-  }
-}
-
-function CountryInfo() {
-  if (this.countryInfo == null) {
-    this.countryInfo = new Object();
-    <% @map_information.each do |zoom, infos| %>
-      if (countryInfo[<%= zoom %>] == null) {
-        countryInfo[<%= zoom %>] = new Object();
+    <% @map_information[zoom][:countries].each do |c| %>
+      if (countryInfo[<%= zoom %>]["<%= c[0] %>"] == null) {
+        countryInfo[<%= zoom %>]["<%= c[0] %>"] = [];
       }
-      <% @map_information[zoom][:countries].each do |c| %>
-        if (countryInfo[<%= zoom %>]["<%= c[0] %>"] == null) {
-          countryInfo[<%= zoom %>]["<%= c[0] %>"] = [];
-        }
-        countryInfo[<%= zoom %>]["<%= c[0] %>"].push(<%= array_or_string_for_javascript(c[1]) %>);
-      <% end %>
+      countryInfo[<%= zoom %>]["<%= c[0] %>"].push(<%= array_or_string_for_javascript(c[1]) %>);
     <% end %>
-  }
-  return this.countryInfo;
+  <% end %>
+  return countryInfo
 }
 
-function ShowCountry() {
-  gr.clear()
-  MarkCountry(document.getElementById('country').value)
-}
-
-function MarkCountry(name) {
-  gr = new jsGraphics(document.getElementById("bigmap"));
-
-  //Create jsColor object
-  var col = new jsColor("red");
-  
-  //pen = new jsPen(col,1);
-
-    
-  var info = CountryInfo()[this.iz.zoom][name];
-  for (var i = 0; i< info.length; i++) {
-    var points = [];
-    for (var j = 0; j< info[i].length; j+= 2) {
-      points.push(new jsPoint(info[i][j], info[i][j + 1]));
-    }
-    try {
-  		gr.fillPolygon(col, points);
-  	} catch (e) {}
-  }
-}
-
+window.addEvent('domready', function() {
+  this.countryInfo = InitCountryInfo()
+  this.countryList = <%= array_or_string_for_javascript(@country_list) %>;
+  this.zoom = 6
+	this.imagezoom = new ImageZoom(this.zoom);
+});
 //-->
 </script>
 
