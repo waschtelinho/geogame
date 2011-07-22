@@ -1,6 +1,7 @@
 function CheckSuccess(clickX, clickY) {
 	var success = false;
 	var countries = clickedCountries(clickX, clickY);
+	GRAPHICS.clear();
 	for (var i = 0; i < countries.length; i++) {
 		MarkCountry(countries[i]);
 		if (countries[i] == RANDOM_COUNTRY) {
@@ -52,7 +53,6 @@ function ShowCountry() {
 }
 
 function MarkCountry(name) {
-  GRAPHICS.clear();
   if (name == null) {
     return;
   }
@@ -95,12 +95,14 @@ function getY(el) {
 function ZoomIn(){
   if (ZOOM < 10) ZOOM += 1;
   IMAGE_ZOOM.setZoom(ZOOM);
+  GRAPHICS.clear();
   MarkCountry(MARKED_COUNTRY);
 }
 
 function ZoomOut(){
   if (ZOOM > 2) ZOOM -= 1;
   IMAGE_ZOOM.setZoom(ZOOM);
+  GRAPHICS.clear();
   MarkCountry(MARKED_COUNTRY);
 }
 
