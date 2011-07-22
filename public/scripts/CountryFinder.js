@@ -28,7 +28,7 @@ function clickedCountries(clickX, clickY) {
         points.push({x: infos[name][i][j], y: infos[name][i][j + 1]});
       }
       
-      if (isPointInPoly(points, {x: clickX, y: clickY})) {
+      if (isPointInPoly(points, {x: clickX, y: clickY}, {x: 0, y: 0})) {
   			countries.push(name)
   		}
     }

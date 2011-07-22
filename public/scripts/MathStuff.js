@@ -51,3 +51,80 @@ function intersection(x1, y1, x2, y2, xp, yp) {
 	//alert(x1 + ',' + y1 + ',' + x2 + ',' + y2 + ',' + xp + ',' + yp + ',' + a1 + ',' + b1 + ',' + a2 + ',' + xs  + ',' + ys);
 	return xs;
 }
+
+
+
+
+function isPointInPoly(polygon, point, reference_point){
+	var intersections = [];
+	polygon.push(polygon[0]);
+	
+	for (var i = 0; i < polygon.length - 1; i++) {
+	  var intersection = getIntersection(polygon[i].x, polygon[i].y, polygon[i+1].x, polygon[i+1].y, reference_point.x, reference_point.y, point.x, point.y);
+	  
+	  if (intersection == 'parallel') {
+	    continue;
+	  } else if (intersection == 'same') {
+	    if (point.x >= Math.min(polygon[i].x, polygon[i+1].x) && point.x <= Math.max(polygon[i].x, polygon[i+1].x)) {
+	      intersections = uniqueAdd(intersections, point);
+	    }
+	  } else {
+	    var xs = Math.round(intersection.x);
+	    var ys = Math.round(intersection.y);
+	    if (xs >= Math.min(polygon[i].x, polygon[i+1].x) && xs <= Math.max(polygon[i].x, polygon[i+1].x) && ys >= Math.min(polygon[i].y, polygon[i+1].y) && ys <= Math.max(polygon[i].y, polygon[i+1].y) && point.x  >= xs && point.y >= ys) {
+	      intersections = uniqueAdd(intersections, {x: xs, y: ys});
+	    }
+	  }
+	}
+	return ((intersections.length % 2) == 1);
+}
+
+function uniqueAdd(ar, point) {
+  for (var i = 0; i < ar.length; i++) {
+    if (ar[i].x == point.x && ar[i].y == point.y) {
+      return ar;
+    }
+  }
+  ar.push(point);
+  return ar;
+}
+
+function getIntersection(l1x1, l1y1, l1x2, l1y2, l2x1, l2y1, l2x2, l2y2) {
+  var a1, b1, a2, b2, xs, ys;
+  if (l1x1 == l1x2) {
+    a1 = null;
+    b1 = null;
+  } else {
+    var a1 = (l1y1 - l1y2) / (l1x1 - l1x2);
+  	var b1 = l1y1 - a1 * l1x1;
+  }
+  
+  if (l2x1 == l2x2) {
+    a2 = null;
+    b2 = null;
+  } else {
+    var a2 = (l2y1 - l2y2) / (l2x1 - l2x2);
+  	var b2 = l2y1 - a2 * l2x1;
+  }
+  
+  if (a1 == a2) {
+    if (l1x1 = l2x1) {
+      return 'same';
+    } else {
+      return 'parallel';
+    }
+  }
+  
+  if (a1 == null) {
+    xs = l1x1;
+    ys = a2 * xs + b2;
+  } else if (a2 == null) {
+    xs = l2x1;
+    ys = a1 * xs + b1;
+  } else {
+    xs = (b1 - b2) / (a2 - a1);
+    ys = a2 * xs + b2;
+  }
+  
+  return {x: xs, y: ys};
+}
