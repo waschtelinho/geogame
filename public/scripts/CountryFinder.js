@@ -1,39 +1,55 @@
 function CheckSuccess(clickX, clickY) {
-	var success = false;
-	var countries = clickedCountries(clickX, clickY);
+	var country = clickedCountry(clickX, clickY);
 	GRAPHICS.clear();
-	for (var i = 0; i < countries.length; i++) {
-		MarkCountry(countries[i]);
-		if (countries[i] == RANDOM_COUNTRY) {
-			success = true;
-		}
-	}
-	
-	if (success) {
-		alert('Richtig!');
+	MarkCountry(country);
+	if (country == RANDOM_COUNTRY) {
+	  alert('Richtig!');
     ClearMark();
 		RandomCountry();
 	} else {
-		alert('Leider daneben! Das ist ' + countries);
+	  alert('Leider daneben! Das ist ' + country);
 	}
 }
 
-function clickedCountries(clickX, clickY) {
-	var countries = [];
+function clickedCountry(clickX, clickY) {
+	var countries = new Array(COUNTRY_LIST.length);
+	for (var i = 0; i < countries.length; i++) {
+	  countries[i] = COUNTRY_LIST[i];
+	}
+	
+	var refPoints = [{x: 0, y: 0}, {x: 0, y: document.getElementById('bigmap').offsetHeight}, {x: document.getElementById('bigmap').offsetWidth, y: document.getElementById('bigmap').offsetHeight}, {x: document.getElementById('bigmap').offsetWidth, y: 0}];
+	
 	infos = COUNTRY_INFO[ZOOM]
-	for (var name in infos) {
-	  for (var i = 0; i < infos[name].length; i++) {
-      var points = [];
-      for (var j = 0; j < infos[name][i].length; j+= 2) {
-        points.push({x: infos[name][i][j], y: infos[name][i][j + 1]});
+	
+	for (var p = 0; p < refPoints.length; p++) {
+	  var refPoint = refPoints[p];
+	  var clickedCountries = [];
+	  for (var n = 0; n < countries.length; n++) {
+	    var name = countries[n];
+      for (var i = 0; i < infos[name].length; i++) {
+        var points = [];
+        for (var j = 0; j < infos[name][i].length; j+= 2) {
+          points.push({x: infos[name][i][j], y: infos[name][i][j + 1]});
+        }
+        
+        if (lineIntersectsWithPolygon(points, {x: clickX, y: clickY}, refPoint)) {
+          clickedCountries.push(name);
+          break;
+        }
       }
-      
-      if (isPointInPoly(points, {x: clickX, y: clickY}, {x: 0, y: 0})) {
-  			countries.push(name)
-  		}
-    }
-  }
-	return countries;
+  	}
+  	  	
+  	if (clickedCountries.length == 0) {
+  	  return null;
+  	} else if (clickedCountries.length == 1) {
+  	  return clickedCountries[0];
+  	} else {
+  	  countries = clickedCountries;
+  	}
+	}
+	
+	alert('ambiguous clicked country: ' + countries);
+	return countries[0];
 }
 
 function RandomCountry() {

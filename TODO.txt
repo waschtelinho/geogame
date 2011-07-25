@@ -1,0 +1,18 @@
+show country zentrieren
+versch. Browser testen
+Lösung für Lesotho, Südafrika
+Lösung für winzige Staaten
+Deutsche Übersetzungen für Länder
+Punkte, Statistiken erfassen
+Anmeldung ermöglichen
+Bestenliste
+Drag auch auf Bigmap
+Schöne Graphik für Karte
+
+
+Haml
+Sass
+CoffeeScript
+Bourbon
+Tests (Frameworks)
+

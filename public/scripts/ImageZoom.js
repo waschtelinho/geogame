@@ -28,7 +28,8 @@ var ImageZoom = new Class({
 				'position': 'absolute'
 			}
 		}).injectInside('zoomer_big_container');
-		this.bigMap.onclick = function(evt){CheckSuccess(evt.clientX - getX(document.getElementById('bigmap')), evt.clientY - getY(document.getElementById('bigmap')))}		
+		
+		this.bigMap.onclick = function(evt){CheckSuccess(evt.layerX, evt.layerY)}		
 		
 		this.zoomerRegion = new Element('div', {
 			id: 'zoomer_region',
