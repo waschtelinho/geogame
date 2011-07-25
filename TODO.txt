@@ -8,7 +8,7 @@ Anmeldung ermöglichen
 Bestenliste
 Drag auch auf Bigmap
 Schöne Graphik für Karte
-
+Live-Test (Performance, Img-Caching?)
 
 Haml
 Sass
