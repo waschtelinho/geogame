@@ -82,6 +82,13 @@ var ImageZoom = new Class({
 		this.setDragPos(this.zoomerRegion);
 	},
 	
+	showPos: function(pos){
+	  var x = (pos.x / ZOOM) - (this.zoomerRegion.offsetWidth / 2);
+	  var y = (pos.y / ZOOM) - (this.zoomerRegion.offsetHeight / 2);
+	  this.setPosition('zoomer_region', x, y);
+	  this.setDragPos(this.zoomerRegion);
+	},
+	
 	setDimensions: function(element,width,height){
 		$(element).setStyles({
 			'width':width,

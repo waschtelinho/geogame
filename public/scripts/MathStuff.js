@@ -66,24 +66,38 @@ function getIntersection(l1x1, l1y1, l1x2, l1y2, l2x1, l2y1, l2x2, l2y2) {
   return {x: xs, y: ys};
 }
 
-function getMidPoint(polygon) {
+function getMidPoint(points) {
+  maxPoint = getMaxPoint(points);
+  minPoint = getMinPoint(points);
+  midX = parseInt(minPoint.x) + Math.round((maxPoint.x - minPoint.x) / 2);
+  midY = parseInt(minPoint.y) + Math.round((maxPoint.y - minPoint.y) / 2);
+  return {x: midX, y: midY};
+}
+
+function getMinPoint(points) {
   var minX = null;
-  var maxX = null;
   var minY = null;
-  var maxY = null;
-  for (var i = 0; i < polygon.length; i++) {
-    if (minX == null || minX > polygon[i].x) {
-      minX = polygon[i].x;
+  for (var i = 0; i < points.length; i++) {
+    if (minX == null || minX > points[i].x) {
+      minX = points[i].x;
     }
-    if (maxX == null || maxX < polygon[i].x) {
-      maxX = polygon[i].x;
-    }
-    if (minY == null || minY > polygon[i].y) {
-      minY = polygon[i].y;
-    }
-    if (maxY == null || maxY < polygon[i].y) {
-      maxY = polygon[i].y;
+    if (minY == null || minY > points[i].y) {
+      minY = points[i].y;
     }
   }
-  return {x: ((maxX - minX) / 2) + minX, y: ((maxY - minY) / 2) + minY}
+  return {x: minX, y: minY};
+}
+
+function getMaxPoint(points) {
+  var maxX = null;
+  var maxY = null;
+  for (var i = 0; i < points.length; i++) {
+    if (maxX == null || maxX < points[i].x) {
+      maxX = points[i].x;
+    }
+    if (maxY == null || maxY < points[i].y) {
+      maxY = points[i].y;
+    }
+  }
+  return {x: maxX, y: maxY};
 }

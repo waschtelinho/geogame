@@ -65,7 +65,26 @@ function SwitchMap() {
 }
 
 function ShowCountry() {
-  MarkCountry(RANDOM_COUNTRY)
+  GRAPHICS.clear();
+  MarkCountry(RANDOM_COUNTRY);
+  IMAGE_ZOOM.showPos(getMidPoint(GetAllBorderPoints(RANDOM_COUNTRY)));
+}
+
+function IsMiniCountry(country_name) {
+  minPoint = getMinPoint(GetAllBorderPoints(country_name));
+  maxPoint = getMaxPoint(GetAllBorderPoints(country_name));
+  return ((maxPoint.x - minPoint.x) < 6) || ((maxPoint.y - minPoint.y) < 6);
+}
+
+function GetAllBorderPoints(country_name){
+  var points = [];
+  var info = COUNTRY_INFO[ZOOM][country_name];
+  for (var i = 0; i< info.length; i++) {
+    for (var j = 0; j< info[i].length; j+= 2) {
+      points.push({x: info[i][j], y: info[i][j + 1]});
+    }
+  }
+  return points;
 }
 
 function MarkCountry(name) {
@@ -85,6 +104,13 @@ function MarkCountry(name) {
     try {
   		GRAPHICS.fillPolygon(col, points);
   	} catch (e) {}
+  }
+  
+  if (IsMiniCountry(name)){
+    var midPoint = getMidPoint(GetAllBorderPoints(name));
+    var pen = new jsPen(col,3);
+    
+    GRAPHICS.drawEllipse(pen, new jsPoint(midPoint.x, midPoint.y), 20, 20);
   }
 }
 
