@@ -65,3 +65,25 @@ function getIntersection(l1x1, l1y1, l1x2, l1y2, l2x1, l2y1, l2x2, l2y2) {
   
   return {x: xs, y: ys};
 }
+
+function getMidPoint(polygon) {
+  var minX = null;
+  var maxX = null;
+  var minY = null;
+  var maxY = null;
+  for (var i = 0; i < polygon.length; i++) {
+    if (minX == null || minX > polygon[i].x) {
+      minX = polygon[i].x;
+    }
+    if (maxX == null || maxX < polygon[i].x) {
+      maxX = polygon[i].x;
+    }
+    if (minY == null || minY > polygon[i].y) {
+      minY = polygon[i].y;
+    }
+    if (maxY == null || maxY < polygon[i].y) {
+      maxY = polygon[i].y;
+    }
+  }
+  return {x: ((maxX - minX) / 2) + minX, y: ((maxY - minY) / 2) + minY}
+}
