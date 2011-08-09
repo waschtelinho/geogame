@@ -1,8 +1,9 @@
-show country zentrieren
 versch. Browser testen
 Lösung für Lesotho, Südafrika
 Lösung für winzige Staaten
-Deutsche Übersetzungen für Länder
+Zoom überdenken (Zoomstufen + gute Abmessungen)
+Deutsche Übersetzungen für Länder (gleich Übersetzungssystem?)
+Spiellogik
 Punkte, Statistiken erfassen
 Anmeldung ermöglichen
 Bestenliste
