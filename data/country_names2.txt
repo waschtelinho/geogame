@@ -1,22 +1,15 @@
-British Virgin Is.
-Baker I.
-Gaza Strip
-Glorioso Is.
-Howland I.
-Jan Mayen
-Jarvis I.
-Johnston Atoll
-Juan De Nova I.
-Midway Is.
-Paracel Is.
-Spratly Is.
-St. Kitts  Nevis
-St. Lucia
-St. Vincent  the Grenadines
-Wake I.
-West Bank
-
-
+Baker I.|Baker Island|Bakerinsel|
+Gaza Strip|Gaza Strip|Gazastreifen|
+Glorioso Is.|Glorioso Islands|Îles Glorieuses|
+Howland I.|Howland Island|Howlandinsel|
+Jarvis I.|Jarvis Island|Jarvis Island|
+Johnston Atoll|Johnston Atoll|Johnston-Atoll|
+Juan De Nova I.|Juan De Nova Island|Juan De Nova|
+Midway Is.|Midway Islands|Midwayinseln|
+Paracel Is.|Paracel Islands|Paracel-Inseln|
+Spratly Is.|Spratly Islands|Spratly-Inseln|
+Wake I.|Wake Island|Wake|
+West Bank|West Bank|Westjordanland|
 Afghanistan|Afghanistan|Afghanistan|Afghanestan
 Albania|Albania|Albanien|Shqiperia
 Algeria|Algeria|Algerien|Al Jaza'ir
@@ -203,9 +196,9 @@ Reunion|Reunion Island|Réunion|Ile de la Réunion
 Romania|Romania|Rumänien|Romania
 Russia|Russian Federation|Russische Föderation (Russland)|Rossiya
 Rwanda|Rwanda|Ruanda|Rwanda
-Saint Kitts and Nevis|Saint Kitts and Nevis|St. Kitts und Nevis| 
-Saint Lucia|Saint Lucia|St. Lucia|Saint Lucia
-Saint Vincent and the Grenadines|Saint Vincent and the Grenadines|St. Vincent und die Grenadinen| 
+St. Kitts  Nevis|Saint Kitts and Nevis|St. Kitts und Nevis| 
+St. Lucia|Saint Lucia|St. Lucia|Saint Lucia
+St. Vincent  the Grenadines|Saint Vincent and the Grenadines|St. Vincent und die Grenadinen| 
 Samoa|Samoa|Samoa|Samoa
 San Marino|San Marino|San Marino|San Marino
 Sao Tome  Principe|Sao Tome and Príncipe|São Tomé und Príncipe|Sao Tome e Principe
@@ -227,7 +220,7 @@ St. Helena|Saint Helena|St. Helena|Saint Helena
 St. Pierre  Miquelon|St. Pierre and Miquelon|St. Pierre und Miquelon|Saint-Pierre et Miquelon
 Sudan|Sudan|Sudan|As-Sudan
 Suriname|Suriname|Suriname|Suriname
-Svalbard|Svalbard and Jan Mayen Islands|Svalbard und Jan Mayen|Spitzbergen
+Jan Mayen|Svalbard and Jan Mayen Islands|Svalbard und Jan Mayen / Spitzbergen|Spitzbergen
 Swaziland|Swaziland|Swasiland|Swaziland
 Sweden|Sweden|Schweden|Sverige
 Switzerland|Switzerland|Schweiz|Schweiz (German), Suisse (French), Svizzera (Italian)
@@ -259,8 +252,8 @@ Vanuatu|Vanuatu|Vanuatu|Vanuatu
 Vatican City|Vatican City State (Holy See)|Heiliger Stuhl (Vatikanstadt)|Status Civitatis Vaticanæ
 Venezuela|Venezuela|Venezuela|Venezuela
 Vietnam|Vietnam|Vietnam|Viet Nam
-Virgin Is.|Virgin Islands (British)|Britische Jungferninseln| 
-Virgin Islands (U.S.)|Virgin Islands (U.S.)|Amerikanische Jungferninseln|Virgin Islands
+British Virgin Is.|Virgin Islands (British)|Britische Jungferninseln| 
+Virgin Is.|Virgin Islands (U.S.)|Amerikanische Jungferninseln|Virgin Islands
 Wallis  Futuna|Wallis and Futuna Islands|Wallis und Futuna|Wallis et Futuna
 Western Sahara|Western Sahara|Westsahara
 Yemen|Yemen|Jemen|Al Yaman
