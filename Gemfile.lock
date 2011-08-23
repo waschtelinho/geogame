@@ -1,3 +1,8 @@
+PATH
+  remote: vendor/gems/elecnix-ruby-geonames-0.2.6
+  specs:
+    elecnix-ruby-geonames (0.2.6)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -70,6 +75,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  elecnix-ruby-geonames (= 0.2.6)!
   rails (= 3.0.6)
   rmagick
   sqlite3
