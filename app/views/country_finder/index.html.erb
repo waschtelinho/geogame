@@ -17,9 +17,17 @@ var WITH_BORDERS = true;
 var RANDOM_COUNTRY = null;
 var MARKED_COUNTRY = null;
 var COUNTRY_INFO = InitCountryInfo();
-var COUNTRY_LIST = <%= array_or_string_for_javascript(@country_list) %>;
+var COUNTRY_LIST = InitCountryList();
 var IMAGE_ZOOM = null;
 var GRAPHICS = null;
+
+function InitCountryList() {
+  var countryList = [];
+  <% @country_list.each do |name| %>
+    countryList.push(name)
+  <% end %>
+  return countryList
+}
 
 function InitCountryInfo() {
   var countryInfo = new Object();

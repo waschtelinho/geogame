@@ -1,18 +1,23 @@
 require 'RMagick'
 
 class MapCreator
+  
+  BORDERS_FILE_PATH = 'data/country_borders.txt'
+  NAMES_FILE_PATH = 'data/country_names.txt'
+  @@locale_names = nil
 
   def self.zooms
     [1,2,3,4,5,6,7,8,9,10]
   end
 
-  def self.get_map_information(source, zoom)
-    file = File.new(source, "r")
+  def self.get_map_information(locale, zoom)
+    file = File.new(BORDERS_FILE_PATH, "r")
     coordinates = []
     x_coords = []
     y_coords = []
     while (line = file.gets)
-      name = line.chomp
+      name = get_loc_name(line.chomp, locale)
+      #name = line.chomp
 
       line = file.gets
 
@@ -65,5 +70,21 @@ class MapCreator
     gc.draw(canvas)
     canvas.write(dest)
   end
+  
+  def self.get_loc_name(country_key, locale)
+    locale_names[country_key][locale]
+  end
 
+  def self.locale_names
+    if @@locale_names.nil?
+      @@locale_names = {}
+      file = File.new(NAMES_FILE_PATH, "r")
+      while (line = file.gets)
+        names = line.split('|')
+        @@locale_names[names[0]] = { :en => names[1], :de => names[2], :loc => names[3] }
+      end
+    end
+    @@locale_names
+  end
+  
 end
