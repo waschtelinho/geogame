@@ -30,7 +30,7 @@ The Bahamas|Bahamas|Bahamas|Bahamas
 Bahrain|Bahrain|Bahrain|Al Bahrayn
 Bangladesh|Bangladesh|Bangladesch|Bangladesh
 Barbados|Barbados|Barbados|Barbados
-Belarus|Belarus|Belarus, (Weißrußland)|Byelarus
+Belarus|Belarus|Belarus / Weißrußland|Byelarus
 Belgium|Belgium|Belgien|Belgique/Belgie
 Belize|Belize|Belize|Belize
 Benin|Benin|Benin|Benin
@@ -44,7 +44,7 @@ Brazil|Brazil|Brasilien|Brasil
 British Indian Ocean Territory|British Indian Ocean Territory|Britisches Territorium im Indischen Ozean|British Indian Ocean Territory
 Brunei|Brunei Darussalam|Brunei Darussalam|Negara Brunei Darussalam
 Bulgaria|Bulgaria|Bulgarien|Bulgaria
-Burkina Faso|Burkina Faso|Burkina Faso (Obervolta - 1984)|Burkina Faso
+Burkina Faso|Burkina Faso|Burkina Faso / Obervolta|Burkina Faso
 Burundi|Burundi|Burundi|Burundi
 Cambodia|Cambodia|Kambodscha|Kampuchea
 Cameroon|Cameroon|Kamerun|Cameroon
@@ -56,14 +56,14 @@ Chad|Chad|Tschad|Tchad
 Chile|Chile|Chile|Chile
 China|China|China|Zhong Guo
 Christmas I.|Christmas Island|Weihnachtsinsel|Christmas Island
-Cocos Is.|Cocos (Keeling) Islands|Kokosinseln (Keeling)|Cocos (Keeling) Islands
+Cocos Is.|Cocos Islands / Keeling Islands|Kokosinseln / Keeling|Cocos Islands / Keeling Islands
 Colombia|Colombia|Kolumbien|Colombia
 Comoros|Comoros|Komoren|Comores
-Congo, DRC|Democratic Republic of the Congo (Kinshasa)|Kongo, Demokratische Republik|République Démocratique du Congo
-Congo|Congo, Republic of (Brazzaville)|Kongo|République du Congo
+Congo, DRC|Democratic Republic of the Congo / Kinshasa|Demokratische Republik Kongo|République Démocratique du Congo
+Congo|Republic of Congo / Brazzaville|Kongo|République du Congo
 Cook Is.|Cook Islands|Cookinseln|Cook Islands
 Costa Rica|Costa Rica|Costa Rica|Costa Rica
-Ivory Coast|Ivory Coast|Côte d'Ivoire (Elfenbeinküste)|Cote d'Ivoire
+Ivory Coast|Ivory Coast|Côte d'Ivoire / Elfenbeinküste|Cote d'Ivoire
 Croatia|Croatia|Kroatien|Hrvatska
 Cuba|Cuba|Kuba|Cuba
 Cyprus|Cyprus|Zypern|Kibris/Kypros
@@ -71,8 +71,8 @@ Czech Republic|Czech Republic|Tschechische Republik|Ceska Republika
 Denmark|Denmark|Dänemark|Danmark
 Djibouti|Djibouti|Dschibuti|Djibouti
 Dominica|Dominica|Dominica|Dominica
-Dominican Republic|Dominican Republic|Dominikanische Republik (Dom Rep)|Dominicana, Republica
-East Timor Timor-Leste|East Timor Timor-Leste|Timor-Leste (Osttimor)|Timor
+Dominican Republic|Dominican Republic|Dominikanische Republik|Republica Dominicana
+East Timor Timor-Leste|East Timor Timor-Leste|Timor-Leste / Osttimor|Timor
 Ecuador|Ecuador|Ecuador|Ecuador
 Egypt|Egypt|Ägypten|Misr
 El Salvador|El Salvador|El Salvador|El Salvador
@@ -80,7 +80,7 @@ Equatorial Guinea|Equatorial Guinea|Äquatorialguinea|Guinea Ecuatorial
 Eritrea|Eritrea|Eritrea|Hagere Ertra
 Estonia|Estonia|Estland|Eesti Vabariik
 Ethiopia|Ethiopia|Äthiopien|Ityop'iya
-Falkland Is.|Falkland Islands|Falklandinseln (Malvinen)|Islas Malvinas
+Falkland Is.|Falkland Islands|Falklandinseln / Malvinen|Islas Malvinas
 Faroe Is.|Faroe Islands|Färöer|Foroyar
 Fiji|Fiji|Fidschi|Fiji
 Finland|Finland|Finnland|Suomen Tasavalta
@@ -108,14 +108,14 @@ Guinea-Bissau|Guinea-Bissau|Guinea-Bissau|Guine-Bissau
 Guyana|Guyana|Guyana|Guyana
 Haiti|Haiti|Haiti|Haiti
 Heard I.  McDonald Is.|Heard and Mc Donald Islands|Heard und die Mcdonaldinseln|Heard and Mc Donald
-Holy See|Holy See|Heiliger Stuhl (Vatikanstadt)|Status Civitatis Vaticanæ
+Holy See|Holy See|Heiliger Stuhl / Vatikanstadt|Status Civitatis Vaticanæ
 Honduras|Honduras|Honduras|Honduras
 Hong Kong|Hong Kong|Hongkong|Xianggang
 Hungary|Hungary|Ungarn|Magyarorszag
 Iceland|Iceland|Island|Lyoveldio Island
 India|India|Indien|Bharat
 Indonesia|Indonesia|Indonesien|Indonesia
-Iran|Iran (Islamic Republic of)|Iran, Islamische Republik|Iran
+Iran|Islamic Republic of Iran|Islamische Republik Iran|Iran
 Iraq|Iraq|Irak|Iraq
 Ireland|Ireland|Irland|Éire
 Isle of Man|Isle of Man|Insel Man|Isle of Man
@@ -127,22 +127,22 @@ Jersey|Jersey|Jersey|Jersey
 Jordan|Jordan|Jordanien|Al Urdun
 Kazakhstan|Kazakhstan|Kasachstan|Qazaqstan
 Kenya|Kenya|Kenya|Kenya
-Kiribati|Kiribati|Kiribati|Kiribati, (Kiribas)
-North Korea|Korea, Democratic People's Rep. (North Korea)|Korea, Demokratische Volksrepublik (Nord Korea)|Choson
-South Korea|Korea, Republic of (South Korea)|Korea, Republik (Süd Korea)|Han-guk
+Kiribati|Kiribati|Kiribati|Kiribati / Kiribas
+North Korea|Democratic People's Rep. Korea / North Korea|Demokratische Volksrepublik Korea / Nord Korea|Choson
+South Korea|Republic of Korea / South Korea|Republik Korea / Süd Korea|Han-guk
 Kuwait|Kuwait|Kuwait|Al Kuwayt
 Kyrgyzstan|Kyrgyzstan|Kirgisistan|Kyrgyz Respublikasy
-Laos|Lao, People's Democratic Republic|Laos, Demokratische Volksrepublik|Lao
+Laos|People's Democratic Republic Lao|Demokratische Volksrepublik Laos|Lao
 Latvia|Latvia|Lettland|Latvija
 Lebanon|Lebanon|Libanon|Lubnan
 Lesotho|Lesotho|Lesotho|Lesotho
 Liberia|Liberia|Liberia|Liberia
-Libya|Libya|Libyen, Libysch-Arabische Dschamahirija|Libiyah
+Libya|Libya|Libyen / Libysch-Arabische Dschamahirija|Libiyah
 Liechtenstein|Liechtenstein|Liechtenstein|Liechtenstein
 Lithuania|Lithuania|Litauen|Lietuva
-Luxembourg|Luxembourg|Luxemburg|Luxembourg, Letzebuerg
+Luxembourg|Luxembourg|Luxemburg|Luxembourg / Letzebuerg
 Macao|Macao|Macau|Aomen
-Macedonia|Macedonia, Rep. of|Mazedonien|Makedonija
+Macedonia|Rep. of Macedonia|Mazedonien|Makedonija
 Madagascar|Madagascar|Madagaskar|Madagascar
 Malawi|Malawi|Malawi|Malawi
 Malaysia|Malaysia|Malaysia|Malaysia
@@ -155,15 +155,15 @@ Mauritania|Mauritania|Mauretanien|Muritaniyah
 Mauritius|Mauritius|Mauritius|Mauritius
 Mayotte|Mayotte|Mayotte|Mayotte
 Mexico|Mexico|Mexiko|Estados Unidos Mexicanos
-Micronesia|Micronesia, Federal States of|Mikronesien, Föderierte Staaten von|Micronesia
-Moldova|Moldova, Republic of|Moldau, Republik|Moldova
+Micronesia|Federal States of Micronesia|Föderierte Staaten von Mikronesien|Micronesia
+Moldova|Republic of Moldova|Republik Moldau|Moldova
 Monaco|Monaco|Monaco|Monaco
 Serbia  Montenegro|Montenegro|Montenegro|Crna Gora
 Mongolia|Mongolia|Mongolei|Mongol Uls
 Montserrat|Montserrat|Montserrat|Montserrat
 Morocco|Morocco|Marokko|Al Maghrib
 Mozambique|Mozambique|Mosambik|Mocambique
-Myanmar|Myanmar, Burma|Myanmar, Birma|Myanma Naingngandaw
+Myanmar|Myanmar / Burma|Myanmar / Birma|Myanma Naingngandaw
 Namibia|Namibia|Namibia|Namibia
 Nauru|Nauru|Nauru|Nauru
 Nepal|Nepal|Nepal|Nepal
@@ -176,7 +176,7 @@ Niger|Niger|Niger|Niger
 Nigeria|Nigeria|Nigeria|Nigeria
 Niue|Niue|Niue|Niue
 Norfolk I.|Norfolk Island|Norfolkinsel|Norfolk Island
-Northern Mariana Is.|Northern Mariana Islands|Marianen, Nördliche|Northern Mariana Islands
+Northern Mariana Is.|Northern Mariana Islands|Nördliche Marianen|Northern Mariana Islands
 Norway|Norway|Norwegen|Norge
 Oman|Oman|Oman|Saltanat Uman
 Pakistan|Pakistan|Pakistan|Pakistan
@@ -194,7 +194,7 @@ Puerto Rico|Puerto Rico|Puerto Rico|Puerto Rico
 Qatar|Qatar|Katar|Dawlat Qatar
 Reunion|Reunion Island|Réunion|Ile de la Réunion
 Romania|Romania|Rumänien|Romania
-Russia|Russian Federation|Russische Föderation (Russland)|Rossiya
+Russia|Russian Federation|Russische Föderation / Russland|Rossiya
 Rwanda|Rwanda|Ruanda|Rwanda
 St. Kitts  Nevis|Saint Kitts and Nevis|St. Kitts und Nevis| 
 St. Lucia|Saint Lucia|St. Lucia|Saint Lucia
@@ -208,7 +208,7 @@ Serbia|Serbia|Serbien|Srbija
 Seychelles|Seychelles|Seychellen|Seychelles
 Sierra Leone|Sierra Leone|Sierra Leone|Sierra Leone
 Singapore|Singapore|Singapur|Singapore
-Slovakia|Slovakia (Slovak Republic)|Slowakei|Slovensko
+Slovakia|Slovakia / Slovak Republic|Slowakei|Slovensko
 Slovenia|Slovenia|Slowenien|Slovenija
 Solomon Is.|Solomon Islands|Salomonen|Solomon Islands
 Somalia|Somalia|Somalia|Somalia
@@ -225,13 +225,13 @@ Svalbard|Svalbard and Jan Mayen Islands|Svalbard und Jan Mayen / Spitzbergen|Spi
 Swaziland|Swaziland|Swasiland|Swaziland
 Sweden|Sweden|Schweden|Sverige
 Switzerland|Switzerland|Schweiz|Schweiz (German), Suisse (French), Svizzera (Italian)
-Syria|Syria, Syrian Arab Republic|Syrien, Arabische Republik|Suriyah
-Taiwan, Republic of China|Taiwan, Republic of China|Taiwan|T'ai-wan
+Syria|Syrian Arab Republic Syria|Arabische Republik Syrien|Suriyah
+Taiwan, Republic of China|Taiwan / Republic of China|Taiwan|T'ai-wan
 Tajikistan|Tajikistan|Tadschikistan|Jumhurii Tojikiston
-Tanzania|Tanzania|Tansania, Vereinigte Republik|Tanzania
+Tanzania|Tanzania|Vereinigte Republik Tansania|Tanzania
 Thailand|Thailand|Thailand|Prathet Thai
 Tibet|Tibet|Tibet|Bod
-Timor Leste|Timor-Leste (East Timor)|Timor-Leste (Osttimor)|Timor
+Timor Leste|Timor-Leste / East Timor|Timor-Leste / Osttimor|Timor
 Togo|Togo|Togo|Republique Togolaise
 Tokelau|Tokelau|Tokelau|Tokelau
 Tonga|Tonga|Tonga|Tonga
@@ -246,18 +246,18 @@ Ukraine|Ukraine|Ukraine|Ukrayina
 United Arab Emirates|United Arab Emirates|Vereinigte Arabische Emirate|Al Imarat al Arabiyah al Muttahidah
 United Kingdom|United Kingdom|Vereinigtes Königreich|United Kingdom
 United States|United States|Vereinigte Staaten|United States
-U.S. Minor Outlying Islands|U.S. Minor Outlying Islands|Amerikanische Überseeinseln, Kleinere|U.S. Minor Outlying Islands
+U.S. Minor Outlying Islands|U.S. Minor Outlying Islands|Kleinere Amerikanische Überseeinseln|U.S. Minor Outlying Islands
 Uruguay|Uruguay|Uruguay|Republica Oriental del Uruguay
 Uzbekistan|Uzbekistan|Usbekistan|Uzbekiston Respublikasi
 Vanuatu|Vanuatu|Vanuatu|Vanuatu
-Vatican City|Vatican City State (Holy See)|Heiliger Stuhl (Vatikanstadt)|Status Civitatis Vaticanæ
+Vatican City|Vatican City State / Holy See|Heiliger Stuhl / Vatikanstadt|Status Civitatis Vaticanæ
 Venezuela|Venezuela|Venezuela|Venezuela
 Vietnam|Vietnam|Vietnam|Viet Nam
-British Virgin Is.|Virgin Islands (British)|Britische Jungferninseln| 
-Virgin Is.|Virgin Islands (U.S.)|Amerikanische Jungferninseln|Virgin Islands
+British Virgin Is.|British Virgin Islands|Britische Jungferninseln| 
+Virgin Is.|U.S. Virgin Islands|Amerikanische Jungferninseln|Virgin Islands
 Wallis  Futuna|Wallis and Futuna Islands|Wallis und Futuna|Wallis et Futuna
-Western Sahara|Western Sahara|Westsahara
+Western Sahara|Western Sahara|Westsahara|
 Yemen|Yemen|Jemen|Al Yaman
-Zaire (see Congo, Democratic People's Republic)|Zaire (see Congo, Democratic People's Republic)|Zaire|Zaire
+Zaire (see Congo, Democratic People's Republic)|Zaire / Democratic People's Republic Kongo|Zaire|Zaire
 Zambia|Zambia|Sambia|Zambia
 Zimbabwe|Zimbabwe|Simbabwe|Zimbabwe

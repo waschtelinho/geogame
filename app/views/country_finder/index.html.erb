@@ -24,7 +24,7 @@ var GRAPHICS = null;
 function InitCountryList() {
   var countryList = [];
   <% @country_list.each do |name| %>
-    countryList.push(name)
+    countryList.push("<%= name %>")
   <% end %>
   return countryList
 }
